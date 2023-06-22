@@ -13,9 +13,11 @@
   ],
   "scripts": {
     "build": "tsc",
+    "lint": "eslint .",
     "prepare": "npm run build"
   },
   "devDependencies": {
+    "@opencast/eslint-config-ts-react": "^0.1.0",
     "typescript": "^5.1.3"
   }
 }

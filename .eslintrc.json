@@ -1,0 +1,4 @@
+{
+  "extends": ["@opencast/eslint-config-ts-react"],
+  "ignorePatterns": ["node_modules", "dist"]
+}
