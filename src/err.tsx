@@ -43,3 +43,15 @@ export const unreachable = (msg?: string): never => {
   const prefix = "reached unreachable code";
   throw new Bug(msg === undefined ? prefix : `${prefix}: ${msg}`);
 };
+
+/**
+ * Asserts that the given value is neither null nor undefined and throws an
+ * exception otherwise.
+ */
+export const notNullish = <T, >(v: T | null | undefined): T => {
+  if (v == null) {
+    return bug("value was unexpectedly nullish");
+  }
+
+  return v;
+};
