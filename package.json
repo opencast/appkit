@@ -1,0 +1,21 @@
+{
+  "name": "@opencast/appkit",
+  "version": "0.1.0",
+  "description": "Code shared by React+TS web applications across the Opencast ecosystem",
+  "author": "The Opencast project",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "tsconfig.json",
+    "src"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "prepare": "npm run build"
+  },
+  "devDependencies": {
+    "typescript": "^5.1.3"
+  }
+}
