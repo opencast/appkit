@@ -2,6 +2,7 @@ import { AppkitConfig } from "./config";
 
 export * from "./config";
 export * from "./err";
+export * from "./floating";
 
 
 /**
