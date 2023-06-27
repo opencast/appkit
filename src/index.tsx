@@ -1,5 +1,6 @@
 import { AppkitConfig } from "./config";
 
+export * from "./colorScheme";
 export * from "./config";
 export * from "./err";
 export * from "./floating";
