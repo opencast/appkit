@@ -25,6 +25,7 @@
     "@emotion/react": "^11.11.1",
     "@floating-ui/react": "^0.24.3",
     "react": "^18.2.0",
+    "react-icons": "^4.9.0",
     "react-merge-refs": "^2.0.2"
   }
 }
