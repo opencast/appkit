@@ -17,6 +17,11 @@ export type AppkitConfig = {
 
     focus: string;
   },
+  breakpoints: {
+    small: number,
+    medium: number,
+    large: number,
+  },
 };
 
 export const DEFAULT_APPKIT_CONFIG: AppkitConfig = {
@@ -33,6 +38,11 @@ export const DEFAULT_APPKIT_CONFIG: AppkitConfig = {
     neutral9: "var(--color-neutral9)",
 
     focus: "var(--color-focus)",
+  },
+  breakpoints: {
+    small: 450,
+    medium: 650,
+    large: 900,
   },
 };
 
