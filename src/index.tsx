@@ -4,6 +4,7 @@ export * from "./colorScheme";
 export * from "./config";
 export * from "./err";
 export * from "./floating";
+export * from "./button";
 
 
 /**
