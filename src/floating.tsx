@@ -43,7 +43,7 @@ type Context = {
             y?: number;
         };
     };
-    refs: Pick<ReturnType<typeof useFloating>["refs"],  "reference" | "floating"> & {
+    refs: Pick<ReturnType<typeof useFloating>["refs"],  "setReference" | "setFloating"> & {
         arrowRef: React.MutableRefObject<HTMLDivElement | null>;
     };
     getReferenceProps: ReturnType<typeof useInteractions>["getReferenceProps"];
@@ -223,7 +223,9 @@ export type FloatingTriggerProps = {
  * Component to designate its single child element as "trigger" a floating
  * element, i.e. the reference element. Has to be placed inside a
  * `<FloatingContainer>`. The child of this component has to properly deal with
- * a `ref` prop (i.e. use `forwardRef` when using function components).
+ * a `ref` prop (i.e. use `forwardRef` when using function components). It also
+ * needs to accept and forward all props of the inner node (e.g. `div`), as
+ * some props like `onClick` are crucial for this to work.
  */
 export const FloatingTrigger: React.FC<FloatingTriggerProps> = ({ children }) => {
   const context = useFloatingContext();
@@ -231,7 +233,7 @@ export const FloatingTrigger: React.FC<FloatingTriggerProps> = ({ children }) =>
   return React.cloneElement(children, {
     "data-floating-state": context.open ? "open" : "closed",
     ...context.getReferenceProps({
-      ref: context.refs.reference,
+      ref: context.refs.setReference,
       onClick: () => context.open && context.setOpen?.(false),
       ...children.props,
     }),
@@ -310,7 +312,7 @@ export const Floating = React.forwardRef<HTMLDivElement, FloatingProps>(
     const pos = sideOfPlacement(calculated.placement);
     const arrowSideLen = Math.SQRT2 * settings.arrowSize;
 
-    const mergedRefs = mergeRefs([ref, refs.floating]);
+    const mergedRefs = mergeRefs([ref, refs.setFloating]);
     return (
       <div {...context.getFloatingProps({ ref: mergedRefs })} css={{
         "--floating-background-color": backgroundColor ?? config.colors.neutral0,
