@@ -17,8 +17,8 @@ export * from "./button";
  * stand out more.
  */
 export const focusStyle = (config: AppkitConfig, { width = 2.5, inset = false, offset = 0 }) => ({
-    "&:focus-visible": {
-        outline: `${width}px solid ${config.colors.focus}`,
-        outlineOffset: `${inset ? -width : offset}px`,
-    },
+  "&:focus-visible": {
+    outline: `${width}px solid ${config.colors.focus}`,
+    outlineOffset: `${inset ? -width : offset}px`,
+  },
 } as const);

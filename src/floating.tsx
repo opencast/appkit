@@ -43,7 +43,7 @@ type Context = {
             y?: number;
         };
     };
-    refs: Pick<ReturnType<typeof useFloating>["refs"],  "setReference" | "setFloating"> & {
+    refs: Pick<ReturnType<typeof useFloating>["refs"], "setReference" | "setFloating"> & {
         arrowRef: React.MutableRefObject<HTMLDivElement | null>;
     };
     getReferenceProps: ReturnType<typeof useInteractions>["getReferenceProps"];
