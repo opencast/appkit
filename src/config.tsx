@@ -56,7 +56,7 @@ export const DEFAULT_CONFIG: AppkitConfig = {
 const Context = React.createContext(DEFAULT_CONFIG);
 
 /** Returns the current configuration for your component. */
-export const useConfig = (): AppkitConfig => {
+export const useAppkitConfig = (): AppkitConfig => {
   return useContext(Context);
 };
 

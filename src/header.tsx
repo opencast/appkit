@@ -3,7 +3,7 @@ import { CSSObject, jsx } from "@emotion/react";
 import { FiArrowLeft, FiCheck } from "react-icons/fi";
 
 import {
-  useConfig, Floating, FloatingContainer, FloatingContainerProps, FloatingHandle,
+  useAppkitConfig, Floating, FloatingContainer, FloatingContainerProps, FloatingHandle,
   FloatingTrigger, ProtoButton, focusStyle, useColorScheme,
 } from ".";
 
@@ -56,7 +56,7 @@ export type HeaderMenuProps = {
  * specified by the props of `HeaderMenuItem`.
  */
 export const HeaderMenu: React.FC<HeaderMenuProps> = ({ close, items, label, breakpoint }) => {
-  const config = useConfig();
+  const config = useAppkitConfig();
   const isDark = useColorScheme().scheme === "dark";
   const bgColor = isDark ? config.colors.neutral15 : config.colors.neutral05;
 
@@ -145,7 +145,7 @@ export type HeaderMenuItemProps = JSX.IntrinsicElements["li"] & {
  * instead applied to the `<li>`, which also contains said icon+children.
  */
 export const HeaderMenuItem: React.FC<HeaderMenuItemProps> = ({ icon, children, wrapper, ...rest }) => {
-  const config = useConfig();
+  const config = useAppkitConfig();
 
   const css = {
     display: "flex",
@@ -228,7 +228,7 @@ type ReturnButtonProps = {
 };
 
 const ReturnButton: React.FC<ReturnButtonProps> = ({ onClick, breakpoint, children }) => {
-  const config = useConfig();
+  const config = useAppkitConfig();
 
   return (
     <div css={{

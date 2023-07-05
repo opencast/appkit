@@ -20,7 +20,7 @@ import React, { ReactNode, ReactElement, useRef, useState, useImperativeHandle }
 import { mergeRefs } from "react-merge-refs";
 
 import { bug, unreachable } from "./err";
-import { useConfig } from "./config";
+import { useAppkitConfig } from "./config";
 
 
 // ===== The floating context ====================================================================
@@ -301,7 +301,7 @@ export const Floating = React.forwardRef<HTMLDivElement, FloatingProps>(
     className,
     hideArrowTip = false,
   }, ref) => {
-    const config = useConfig();
+    const config = useAppkitConfig();
     const { open, calculated, refs, settings, ...context } = useFloatingContext();
 
     // Render nothing if the floating element is not opened.
@@ -401,7 +401,7 @@ export type WithTooltipProps = {
 /** Adds an on-hover tooltip to the given `children`. */
 export const WithTooltip = React.forwardRef<FloatingHandle, WithTooltipProps>(
   ({ children, tooltip, tooltipCss, ...props }, ref) => {
-    const config = useConfig();
+    const config = useAppkitConfig();
 
     return (
       <FloatingContainer
