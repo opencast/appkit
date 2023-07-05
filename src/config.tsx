@@ -1,22 +1,10 @@
 import React, { useContext } from "react";
 
 
+
 /** Configuration of this library. */
 export type AppkitConfig = {
-  colors: {
-    neutral0: string,
-    neutral1: string,
-    neutral2: string,
-    neutral3: string,
-    neutral4: string,
-    neutral5: string,
-    neutral6: string,
-    neutral7: string,
-    neutral8: string,
-    neutral9: string,
-
-    focus: string;
-  },
+  colors: ColorConfig,
   breakpoints: {
     small: number,
     medium: number,
@@ -24,18 +12,37 @@ export type AppkitConfig = {
   },
 };
 
+export type ColorConfig = {
+  neutral05: string,
+  neutral10: string,
+  neutral15: string,
+  neutral20: string,
+  neutral25: string,
+  neutral30: string,
+  neutral40: string,
+  neutral50: string,
+  neutral60: string,
+  neutral70: string,
+  neutral80: string,
+  neutral90: string,
+
+  focus: string;
+};
+
 export const DEFAULT_APPKIT_CONFIG: AppkitConfig = {
   colors: {
-    neutral0: "var(--color-neutral0)",
-    neutral1: "var(--color-neutral1)",
-    neutral2: "var(--color-neutral2)",
-    neutral3: "var(--color-neutral3)",
-    neutral4: "var(--color-neutral4)",
-    neutral5: "var(--color-neutral5)",
-    neutral6: "var(--color-neutral6)",
-    neutral7: "var(--color-neutral7)",
-    neutral8: "var(--color-neutral8)",
-    neutral9: "var(--color-neutral9)",
+    neutral05: "var(--color-neutral05)",
+    neutral10: "var(--color-neutral10)",
+    neutral15: "var(--color-neutral15)",
+    neutral20: "var(--color-neutral20)",
+    neutral25: "var(--color-neutral25)",
+    neutral30: "var(--color-neutral30)",
+    neutral40: "var(--color-neutral40)",
+    neutral50: "var(--color-neutral50)",
+    neutral60: "var(--color-neutral60)",
+    neutral70: "var(--color-neutral70)",
+    neutral80: "var(--color-neutral80)",
+    neutral90: "var(--color-neutral90)",
 
     focus: "var(--color-focus)",
   },

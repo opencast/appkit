@@ -315,8 +315,8 @@ export const Floating = React.forwardRef<HTMLDivElement, FloatingProps>(
     const mergedRefs = mergeRefs([ref, refs.setFloating]);
     return (
       <div {...context.getFloatingProps({ ref: mergedRefs })} css={{
-        "--floating-background-color": backgroundColor ?? config.colors.neutral0,
-        "--floating-border-color": borderColor ?? config.colors.neutral4,
+        "--floating-background-color": backgroundColor ?? config.colors.neutral05,
+        "--floating-border-color": borderColor ?? config.colors.neutral40,
         "--floating-border-width": `${borderWidth}px`,
         "--floating-shadow-blur": `${shadowBlur}px`,
         "--floating-shadow-color": shadowColor,
@@ -411,7 +411,7 @@ export const WithTooltip = React.forwardRef<FloatingHandle, WithTooltipProps>(
         placement={props.placement ?? "top"}
       >
         <Floating css={{
-          color: config.colors.neutral7,
+          color: config.colors.neutral80,
           fontSize: 14,
           maxWidth: "100%",
           ...tooltipCss as Record<string, unknown>,

@@ -58,10 +58,11 @@ export type HeaderMenuProps = {
 export const HeaderMenu: React.FC<HeaderMenuProps> = ({ close, items, label, breakpoint }) => {
   const config = useConfig();
   const isDark = useColorScheme().scheme === "dark";
+  const bgColor = isDark ? config.colors.neutral15 : config.colors.neutral05;
 
   return (
     <Floating
-      backgroundColor={isDark ? config.colors.neutral2 : config.colors.neutral0}
+      backgroundColor={bgColor}
       borderWidth={isDark ? 1 : 0}
       padding={0}
       shadowBlur={8}
@@ -103,7 +104,7 @@ export const HeaderMenu: React.FC<HeaderMenuProps> = ({ close, items, label, bre
             ":last-of-type": { borderRadius: "0 0 8px 8px" },
           },
           [`@media (max-width: ${breakpoint}px)`]: {
-            backgroundColor: config.colors.neutral0,
+            backgroundColor: bgColor,
             borderRadius: "0 0 8px 8px",
             marginTop: 0,
             position: "fixed",
@@ -164,11 +165,11 @@ export const HeaderMenuItem: React.FC<HeaderMenuItemProps> = ({ icon, children, 
       "& > path": { strokeWidth: "inherit" },
     },
     ":hover, :focus": {
-      backgroundColor: config.colors.neutral1,
+      backgroundColor: config.colors.neutral10,
       color: "inherit",
     },
     ":not(:first-of-type)": {
-      borderTop: `1px solid ${config.colors.neutral3}`,
+      borderTop: `1px solid ${config.colors.neutral25}`,
     },
     ...focusStyle(config, { inset: true }),
   } as const;
@@ -231,7 +232,7 @@ const ReturnButton: React.FC<ReturnButtonProps> = ({ onClick, breakpoint, childr
 
   return (
     <div css={{
-      borderBottom: `1px solid ${config.colors.neutral4}`,
+      borderBottom: `1px solid ${config.colors.neutral40}`,
       display: "flex",
       alignItems: "center",
       [`@media not all and (max-width: ${breakpoint}px)`]: {
@@ -259,7 +260,7 @@ const ReturnButton: React.FC<ReturnButtonProps> = ({ onClick, breakpoint, childr
         whiteSpace: "nowrap",
         textOverflow: "ellipsis",
         overflow: "hidden",
-        color: config.colors.neutral5,
+        color: config.colors.neutral60,
       }}>{children}</span>
     </div>
   );
