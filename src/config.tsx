@@ -29,7 +29,7 @@ export type ColorConfig = {
   focus: string;
 };
 
-export const DEFAULT_APPKIT_CONFIG: AppkitConfig = {
+export const DEFAULT_CONFIG: AppkitConfig = {
   colors: {
     neutral05: "var(--color-neutral05)",
     neutral10: "var(--color-neutral10)",
@@ -53,7 +53,7 @@ export const DEFAULT_APPKIT_CONFIG: AppkitConfig = {
   },
 };
 
-const Context = React.createContext(DEFAULT_APPKIT_CONFIG);
+const Context = React.createContext(DEFAULT_CONFIG);
 
 /** Returns the current configuration for your component. */
 export const useConfig = (): AppkitConfig => {
