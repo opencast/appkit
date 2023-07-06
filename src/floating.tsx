@@ -93,6 +93,13 @@ export type FloatingContainerProps = React.PropsWithChildren<{
      */
     ariaRole?: NonNullable<Parameters<typeof useRole>[1]>["role"];
 
+    /**
+     * Function that is called when the floating element is closed (e.g. via
+     * pressing escape, clicking outside of it, ...). This is mainly useful if
+     * you pass `open` and do the state management yourself.
+     */
+    onClose?: () => void;
+
     className?: string;
     // TODO: inline block?
 } & (
@@ -130,6 +137,7 @@ export const FloatingContainer = React.forwardRef<FloatingHandle, FloatingContai
     borderRadius = 4,
     viewPortMargin = 8,
     ariaRole = "tooltip",
+    onClose = () => {},
     className,
     ...rest
   }, ref) => {
@@ -153,7 +161,14 @@ export const FloatingContainer = React.forwardRef<FloatingHandle, FloatingContai
       context: floatContext,
     } = useFloating({
       open: actualOpen,
-      ...!("open" in rest) && { onOpenChange: setOpen },
+      onOpenChange: open => {
+        if (!("open" in rest)) {
+          setOpen(open);
+        }
+        if (!open) {
+          onClose();
+        }
+      },
       placement: idealPlacement,
       whileElementsMounted: autoUpdate,
       middleware: [
