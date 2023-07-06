@@ -1,6 +1,20 @@
-# AppKit: Library for Opencast-related React applications
+# AppKit: library for Opencast-related React apps
 
-TODO
+> **Important**: This is still very much work in progress!
+> Expect frequent releases with breaking changes.
+
+Library for the development of (React + TS + emotion.js)-based apps in the Opencast context.
+It provides a number of React components and various other utilty features.
+In order to ensure style consistency across our apps, appkit "includes" a design and is not suitable as a general purpose library;
+that's the whole point: to get a pre-defined design.
+
+
+## Usage
+
+- `npm install --save @opencast/appkit`
+- Make sure all of [appkit's `peerDependencies`](./package.json) are installed (should be done by NPM in the previous step).
+- Provide color values, most likely by copying [`colors.css`](./src/colors.css) into your `index.html`. See "colors" section below.
+- Optionally configure appkit via `AppkitConfigProvider`.
 
 
 ## Colors
@@ -50,11 +64,18 @@ neutral80    68.0                  #a0a6b3
 neutral90    79.0                  #c0c4cc
 ```
 
-## ...
+### Accent color
+
+TODO
+
+### Destructive color
 
 TODO
 
 
 ## Color Scheme Switching
 
-TODO
+Appkit provides utlities to have multiple color schemes in your app: `useColorScheme` and `ColorSchemeProvider`.
+(Note: currently it only supports "light" and "dark"! This might be expanded in the future.)
+See the [documentation on `ColorSchemeProvider`](./src/colorScheme.tsx) to understand how this system works and what you have to do to set it up.
+
