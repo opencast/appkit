@@ -12,7 +12,7 @@
     "src"
   ],
   "scripts": {
-    "build": "tsc",
+    "build": "tsc; cp src/colors.css dist",
     "lint": "eslint .",
     "prepare": "npm run build"
   },
