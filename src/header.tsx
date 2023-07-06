@@ -41,9 +41,13 @@ export const WithHeaderMenu: React.FC<WithHeaderMenuProps> = ({ children, menu, 
   );
 };
 
+export type HeaderMenuItemDef = HeaderMenuItemProps & {
+  css?: CSSObject;
+  keepOpenAfterClick?: boolean;
+};
 
 export type HeaderMenuProps = {
-    items: HeaderMenuItemProps[],
+    items: HeaderMenuItemDef[],
     label: string;
     /** Number of pixels below which the mobile view is used */
     breakpoint: number,
@@ -114,12 +118,14 @@ export const HeaderMenu: React.FC<HeaderMenuProps> = ({ close, items, label, bre
           },
         }}>
           <ReturnButton onClick={close} breakpoint={breakpoint}>{label}</ReturnButton>
-          {items.map((props, i) => <HeaderMenuItem
+          {items.map(({ keepOpenAfterClick, ...props }, i) => <HeaderMenuItem
             key={i}
             {...props}
             onClick={e => {
               props?.onClick?.(e);
-              close();
+              if (!keepOpenAfterClick) {
+                close();
+              }
             }} />
           )}
         </ul>
@@ -154,7 +160,7 @@ export const HeaderMenuItem: React.FC<HeaderMenuItemProps> = ({ icon, children, 
     minWidth: 160,
     padding: 12,
     textDecoration: "none",
-    // ...indent && { paddingLeft: 30 },
+    color: config.colors.neutral90,
     cursor: "pointer",
     whiteSpace: "nowrap",
     "& > svg": {
@@ -168,19 +174,22 @@ export const HeaderMenuItem: React.FC<HeaderMenuItemProps> = ({ icon, children, 
       backgroundColor: config.colors.neutral10,
       color: "inherit",
     },
-    ":not(:first-of-type)": {
-      borderTop: `1px solid ${config.colors.neutral25}`,
-    },
     ...focusStyle(config, { inset: true }),
   } as const;
 
-
+  const { className, ...outerProps } = rest;
   const wrapperElem = wrapper ?? <></>;
   return (
     <li
       role="menuitem"
-      {...!wrapper && { css }}
-      {...rest}
+      {...outerProps}
+      css={{
+        ":not(:first-of-type)": {
+          borderTop: `1px solid ${config.colors.neutral30}`,
+        },
+        ...!wrapper && css,
+      }}
+      {...!wrapper && { className }}
     >
       {jsx(wrapperElem.type, {
         key: wrapperElem.key,
@@ -189,6 +198,7 @@ export const HeaderMenuItem: React.FC<HeaderMenuItemProps> = ({ icon, children, 
           {icon ?? <svg />}
           <div>{children}</div>
         </>,
+        ...wrapper && { className },
         ...wrapper && { css: [css, { borderRadius: "inherit" }] },
       })}
     </li>
@@ -203,7 +213,7 @@ export const checkboxMenuItem = ({ checked, onClick, children }: {
   checked: boolean,
   onClick: () => void,
   children: JSX.Element,
-}): HeaderMenuItemProps & { css: CSSObject } => ({
+}): HeaderMenuItemDef => ({
   icon: checked ? <FiCheck /> : undefined,
   onClick,
   onKeyDown: e => {
