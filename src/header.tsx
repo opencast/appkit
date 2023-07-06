@@ -87,7 +87,7 @@ export const HeaderMenu: React.FC<HeaderMenuProps> = ({ close, items, label, bre
           // Grey out background on mobile devices.
           [`@media (max-width: ${breakpoint}px)`]: {
             position: "fixed",
-            top: "var(--header-height)",
+            top: 0,
             bottom: 0,
             left: 0,
             right: 0,
