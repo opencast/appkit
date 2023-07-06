@@ -2,6 +2,7 @@
   "name": "@opencast/appkit",
   "version": "0.1.1",
   "description": "Code shared by React+TS web applications across the Opencast ecosystem",
+  "repository": "github:opencast/appkit",
   "author": "The Opencast project",
   "license": "MIT",
   "main": "dist/index.js",
