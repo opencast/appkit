@@ -42,3 +42,10 @@ export function match<T extends string | number, Out>(
         ? arms[value]!()
         : (arms[value] as (() => Out) | undefined ?? fallback)();
 }
+
+
+/** CSS Media query for screens with widths ≤ `w` */
+export const screenWidthAtMost = (w: number) => `@media (max-width: ${w}px)`;
+
+/** CSS Media query for screens with widths > `w` */
+export const screenWidthAbove = (w: number) => `@media not all and (max-width: ${w}px)`;
