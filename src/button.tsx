@@ -13,7 +13,9 @@ export const ProtoButton = React.forwardRef<HTMLButtonElement, JSX.IntrinsicElem
       padding: 0,
       background: "none",
       color: "inherit",
-      cursor: "pointer",
+      ":not([disabled])": {
+        cursor: "pointer",
+      },
     }}
     {...rest}
   >{children}</button>,
