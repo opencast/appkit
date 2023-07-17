@@ -6,6 +6,7 @@ export * from "./config";
 export * from "./err";
 export * from "./floating";
 export * from "./header";
+export * from "./spinner";
 export * from "./util";
 
 
