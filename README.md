@@ -30,9 +30,9 @@ Neutral colors that can be used throughout the design.
 You may make the grey tone configurable in your app (e.g. to allow organizations to choose a slightly warm grey), but the individual colors must still have the same perceived brightness values as specified here.
 (Note: perceived brightness is the same as L in the LCH color space, but NOT the same as the L in HSL!)
 
+**Light mode**
 ```
              Perceived brightness  sRGB hex code
-Light mode
 neutral05    99.7                  #fefefe
 neutral10    95.9                  #f3f3f3
 neutral15    92.0                  #e8e8e8
@@ -45,8 +45,11 @@ neutral60    37.0                  #575757
 neutral70    27.0                  #404040
 neutral80    17.0                  #2a2a2a
 neutral90    8.0                   #181818
+```
 
-Dark mode
+**Dark mode**
+```
+             Perceived brightness  sRGB hex code
 neutral05    7.7                   #171717
 neutral10    11.5                  #1e1e1e
 neutral15    15.3                  #262626
@@ -67,8 +70,21 @@ TODO
 
 ### Destructive color
 
-TODO
+**Light mode**
+```
+danger0: #feedeb;
+danger1: #ffd2cd;
+danger4: #c22a2c;
+danger5: #880e11;
+```
 
+**Dark mode**
+```
+danger0: #361314;
+danger1: #462522;
+danger4: #e0584d;
+danger5: #fb7c67;
+```
 
 ## Color Scheme Switching
 

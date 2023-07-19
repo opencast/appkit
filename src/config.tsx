@@ -26,6 +26,11 @@ export type ColorConfig = {
   neutral80: string,
   neutral90: string,
 
+  danger0: string,
+  danger1: string,
+  danger4: string,
+  danger5: string,
+
   focus: string;
 };
 
@@ -43,6 +48,11 @@ export const DEFAULT_CONFIG: AppkitConfig = {
     neutral70: "var(--color-neutral70)",
     neutral80: "var(--color-neutral80)",
     neutral90: "var(--color-neutral90)",
+
+    danger0: "var(--color-danger0)",
+    danger1: "var(--color-danger1)",
+    danger4: "var(--color-danger4)",
+    danger5: "var(--color-danger5)",
 
     focus: "var(--color-focus)",
   },
