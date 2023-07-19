@@ -1,3 +1,5 @@
+import { MutableRefObject, useEffect } from "react";
+
 /**
  * A switch-case-like expression with exhaustiveness check (or fallback value).
  * A bit like Rust's `match`, but worse.
@@ -49,3 +51,21 @@ export const screenWidthAtMost = (w: number) => `@media (max-width: ${w}px)`;
 
 /** CSS Media query for screens with widths > `w` */
 export const screenWidthAbove = (w: number) => `@media not all and (max-width: ${w}px)`;
+
+/** Helper to react to clicks outside of the DOM element referred to by `ref`. */
+export const useOnOutsideClick = (
+    ref: MutableRefObject<Node | null>,
+    callback: () => void,
+): void => {
+    useEffect(() => {
+        const handler = (event: MouseEvent) => {
+            const target = event.target;
+            if (ref.current && target instanceof Element && !ref.current.contains(target)) {
+                callback();
+            }
+        };
+
+        document.addEventListener("mousedown", handler);
+        return () => document.removeEventListener("mousedown", handler);
+    });
+};
