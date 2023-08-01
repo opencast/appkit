@@ -32,6 +32,12 @@ export type ColorConfig = {
   danger4: string,
   danger5: string,
 
+  accent8: string;
+  accent7: string;
+  accent6: string;
+  accent5: string;
+  accent4: string;
+
   focus: string;
 };
 
@@ -56,7 +62,13 @@ export const DEFAULT_CONFIG: AppkitConfig = {
     danger4: "var(--color-danger4)",
     danger5: "var(--color-danger5)",
 
-    focus: "var(--color-focus)",
+    accent8: "var(--color-accent8)",
+    accent7: "var(--color-accent7)",
+    accent6: "var(--color-accent6)",
+    accent5: "var(--color-accent5)",
+    accent4: "var(--color-accent4)",
+
+    focus: "var(--color-accent8)",
   },
   breakpoints: {
     small: 450,
