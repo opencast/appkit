@@ -72,18 +72,20 @@ TODO
 
 **Light mode**
 ```
-danger0: #feedeb;
-danger1: #ffd2cd;
-danger4: #c22a2c;
-danger5: #880e11;
+danger0   #feedeb   lch(95.1%   6.5  28.9)
+danger1   #ffd2cd   lch(88.0%  18.0  29.1)
+danger2   #feaba1   lch(78.1%  35.6  31.1)
+danger4   #c22a2c   lch(44.0%  71.0  33.2)
+danger5   #880e11   lch(29.0%  59.9  35.9)
 ```
 
 **Dark mode**
 ```
-danger0: #361314;
-danger1: #462522;
-danger4: #e0584d;
-danger5: #fb7c67;
+danger0   #361314   lch(11.5%  19.8  24.5)
+danger1   #462522   lch(19.2%  18.2  30.2)
+danger2   #712f2a   lch(29.0%  35.0  31.6)
+danger4   #e0584d   lch(56.1%  64.1  33.4)
+danger5   #fb7c67   lch(67.1%  59.8  36.1)
 ```
 
 ## Color Scheme Switching

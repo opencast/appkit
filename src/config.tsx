@@ -28,6 +28,7 @@ export type ColorConfig = {
 
   danger0: string,
   danger1: string,
+  danger2: string,
   danger4: string,
   danger5: string,
 
@@ -51,6 +52,7 @@ export const DEFAULT_CONFIG: AppkitConfig = {
 
     danger0: "var(--color-danger0)",
     danger1: "var(--color-danger1)",
+    danger2: "var(--color-danger2)",
     danger4: "var(--color-danger4)",
     danger5: "var(--color-danger5)",
 

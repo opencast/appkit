@@ -14,6 +14,7 @@ html[data-color-scheme="light"], html:not([data-color-scheme]) {
 
   --color-danger0: #feedeb;
   --color-danger1: #ffd2cd;
+  --color-danger2: #feaba1;
   --color-danger4: #c22a2c;
   --color-danger5: #880e11;
 
@@ -37,6 +38,7 @@ html[data-color-scheme="dark"] {
 
   --color-danger0: #361314;
   --color-danger1: #462522;
+  --color-danger2: #712f2a;
   --color-danger4: #e0584d;
   --color-danger5: #fb7c67;
 
