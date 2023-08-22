@@ -3,9 +3,12 @@ import { useContext, useState } from "react";
 import { bug } from "./err";
 
 
-export type ColorScheme = {
+export const COLOR_SCHEMES = ["light", "dark", "light-high-contrast", "dark-high-contrast"] as const;
+export type ColorScheme = typeof COLOR_SCHEMES[number];
+
+export type ColorSchemeContext = {
   /** The current color scheme. */
-  scheme: "light" | "dark";
+  scheme: ColorScheme;
 
   /**
    * Whether the color scheme is derived from the `prefers-color-scheme` media
@@ -14,19 +17,28 @@ export type ColorScheme = {
   isAuto: boolean;
 
   /** Updates the current color scheme. */
-  update: (pref: "light" | "dark" | "auto") => void;
+  update: (pref: ColorScheme | "auto") => void;
 };
 
 const LOCAL_STORAGE_KEY = "colorScheme";
 
-const ColorSchemeContext = React.createContext<ColorScheme | null>(null);
+const ColorSchemeContext = React.createContext<ColorSchemeContext | null>(null);
 
 /**
  * Returns current information about the color scheme and a way to change it. If
  * the color scheme changes, components using this hook are rerendered.
  */
-export const useColorScheme = (): ColorScheme => useContext(ColorSchemeContext)
+export const useColorScheme = (): ColorSchemeContext => useContext(ColorSchemeContext)
   ?? bug("missing color scheme context provider");
+
+export type ColorSchemeProviderProps = React.PropsWithChildren<{
+  /**
+   * List of allowed color schemes. By default all four supported schemes are
+   * allowed. If your app does not support high contrast mode, you can pass a
+   * subset of those here (most likely `["light", "dark"]).
+   */
+  allowedSchemes?: ColorScheme[];
+}>;
 
 /**
  * Provides the context for `useColorScheme`.
@@ -46,6 +58,8 @@ export const useColorScheme = (): ColorScheme => useContext(ColorSchemeContext)
  * html[data-color-scheme="dark"] {
  *   --some-color: black;
  * }
+ *
+ * /* Same for "light-high-contrast" and "dark-high-contrast" if you support those
  * ```
  *
  * This `data-color-scheme` attribute is derived from the `prefers-color-scheme`
@@ -54,11 +68,17 @@ export const useColorScheme = (): ColorScheme => useContext(ColorSchemeContext)
  * should copy the following into a `<script>` section in your `index.html`.
  *
  * ```javascript
- * const scheme = window.localStorage.getItem("colorScheme");
- *   document.documentElement.dataset.colorScheme = (scheme === "dark" || scheme === "light")
- *     ? scheme
- *     : (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+ * let scheme = window.localStorage.getItem("colorScheme");
+ * const isValid = ["light", "dark", "light-high-contrast", "dark-high-contrast"].includes(scheme);
+ * if (!isValid) {
+ *   const lightness = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+ *   const contrast = window.matchMedia("(prefers-contrast: more)").matches ? "-high-contrast" : "";
+ *   scheme = `${lightness}${contrast}`;
+ * }
+ * document.documentElement.dataset.colorScheme = scheme;
  * ```
+ *
+ * If you don't support high contrast schemes, remove the relevant code.
  *
  * With that done, you can use this `ColorSchemeProvider` and `useColorScheme`
  * to get the current color scheme in React code, as well as change it. The
@@ -66,22 +86,32 @@ export const useColorScheme = (): ColorScheme => useContext(ColorSchemeContext)
  * the HTML attribute and the values in the context (causing all subscribed
  * components to rerender).
  */
-export const ColorSchemeProvider: React.FC<React.PropsWithChildren> = ({ children }) => {
+export const ColorSchemeProvider: React.FC<ColorSchemeProviderProps> = ({
+  allowedSchemes,
+  children,
+}) => {
+  const isValidScheme = (v: string | undefined | null): v is ColorScheme => {
+    return !!v && ((allowedSchemes ?? COLOR_SCHEMES) as readonly string[]).includes(v);
+  };
+
   // Retrieve the scheme that was selected when the page was loaded. This is
   // set inside `index.html`.
-  const initialScheme = document.documentElement.dataset.colorScheme === "dark"
-    ? "dark" as const
-    : "light" as const;
+  const attrValue = document.documentElement.dataset.colorScheme;
+  const initialScheme = isValidScheme(attrValue) ? attrValue : "light" as const;
   const [scheme, setScheme] = useState(initialScheme);
 
   // Next, check whether there are some preferences stored in local storage.
   const stored = window.localStorage.getItem(LOCAL_STORAGE_KEY);
-  const [isAuto, setIsAuto] = useState(stored !== "dark" && stored !== "light");
+  const [isAuto, setIsAuto] = useState(!isValidScheme(stored));
 
-  const context: ColorScheme = {
+  const context: ColorSchemeContext = {
     scheme,
     isAuto,
     update: pref => {
+      if (pref !== "auto" && !isValidScheme(pref)) {
+        return bug("Passed forbidden color scheme to `update`");
+      }
+
       // Update preference in local storage
       window.localStorage.setItem(LOCAL_STORAGE_KEY, pref);
 

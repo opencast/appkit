@@ -107,6 +107,7 @@ danger5   #fb7c67   lch(67.1%  59.8  36.1)
 ## Color Scheme Switching
 
 Appkit provides utlities to have multiple color schemes in your app: `useColorScheme` and `ColorSchemeProvider`.
-(Note: currently it only supports "light" and "dark"! This might be expanded in the future.)
+This currently supports `light`, `dark`, `light-high-contrast` and `dark-high-contrast`.
+If your app does not support high contrast modes, you can disable those.
 See the [documentation on `ColorSchemeProvider`](./src/colorScheme.tsx) to understand how this system works and what you have to do to set it up.
 

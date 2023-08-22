@@ -57,3 +57,5 @@ html[data-color-scheme="dark"] {
   --color-focus: #B8D9FC;
   color-scheme: dark;
 }
+
+/** TODO: Add colors for high contrast modes */
