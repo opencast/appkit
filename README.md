@@ -117,7 +117,7 @@ See the [documentation on `ColorSchemeProvider`](./src/colorScheme.tsx) to under
 To work on appkit or test patches locally (i.e. whenever you can't use NPM releases), you can include like this:
 
 - In your local `appkit` directory run `npm link` (`sudo` likely required)
-- In the apps directory, run `npm link @opencast/appkit`
+- In the directory of the app you want to use appkit with,, run `npm link @opencast/appkit`
 
 This essentially just does `ln -s /path/to/appkit /path/to/app/node_modules/@opencast/appkit`, i.e. create a symbolic link.
 Whenever you run `npm ci` or `npm install` in the app's directory, that link is overwritten and replaced with the NPM version of appkit; then you have to run the second command `npm link @opencast/appkit` again.
@@ -135,5 +135,5 @@ resolve: {
 ```
 
 A more in-depth explanation of why this is necessary can be found [here](https://gist.github.com/LukasKalbertodt/382cb53a85fcf6e7d1f5235625c6f4fb).
-Whenever you encounter weird runtime errors complaining about imports, it could be this issue.
+Whenever you encounter weird runtime errors complaining about imports or invalid hook calls, it could be this issue.
 Then you can try adding another alias for the problematic dependency.
