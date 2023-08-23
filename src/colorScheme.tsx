@@ -35,7 +35,8 @@ export type ColorSchemeProviderProps = React.PropsWithChildren<{
   /**
    * List of allowed color schemes. By default all four supported schemes are
    * allowed. If your app does not support high contrast mode, you can pass a
-   * subset of those here (most likely `["light", "dark"]).
+   * subset of those here (most likely `["light", "dark"]). This must contain
+   * at least 2 elements and must contain either `dark` or `light`!
    */
   allowedSchemes?: ColorScheme[];
 }>;
@@ -87,11 +88,18 @@ export type ColorSchemeProviderProps = React.PropsWithChildren<{
  * components to rerender).
  */
 export const ColorSchemeProvider: React.FC<ColorSchemeProviderProps> = ({
-  allowedSchemes,
+  allowedSchemes = COLOR_SCHEMES,
   children,
 }) => {
+  if (allowedSchemes.length < 2) {
+    return bug("`allowedSchemes` for ColorSchemeProvider need to have at least 2 schemes");
+  }
+  if (!allowedSchemes.includes("light") && !allowedSchemes.includes("dark")) {
+    return bug("`allowedSchemes` must contain either 'light' or 'dark'");
+  }
+
   const isValidScheme = (v: string | undefined | null): v is ColorScheme => {
-    return !!v && ((allowedSchemes ?? COLOR_SCHEMES) as readonly string[]).includes(v);
+    return !!v && (allowedSchemes as readonly string[]).includes(v);
   };
 
   // Retrieve the scheme that was selected when the page was loaded. This is
@@ -118,9 +126,39 @@ export const ColorSchemeProvider: React.FC<ColorSchemeProviderProps> = ({
       // Update the two states `isAuto` and `scheme` (for other JS code),
       // but also the attribute on `<html>` (for CSS code).
       setIsAuto(pref === "auto");
-      const scheme = (pref === "dark" || pref === "light")
+
+      // If it is set to "auto" we need to figure out the best scheme given
+      // browser preferences. This is a bit more complicated due to
+      // `allowedSchemes`.
+      let scheme = pref !== "auto"
         ? pref
-        : (window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light");
+        : (() => {
+          const lightness = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+          const contrast = window.matchMedia("(prefers-contrast: more)").matches ? "-high-contrast" : "";
+
+          // Check if the perfect scheme is supported, and if so, use it.
+          const perfectMatch = `${lightness}${contrast}` as const;
+          if (allowedSchemes.includes(perfectMatch)) {
+            return perfectMatch;
+          }
+
+          // Next, check the inverse high contrast scheme. If the browser
+          // says "prefers high contrast", then thats likely way more important
+          // to the user than having the correct lightness.
+          const inverseLightness = lightness === "light" ? "dark" : "light";
+          const inverseHighContrast = `${inverseLightness}${contrast}` as const;
+          if (allowedSchemes.includes(inverseHighContrast)) {
+            return inverseHighContrast;
+          }
+
+          // If `contrast` is empty string, this point is unreachable as either
+          // `light` or `dark` must be part of `allowedSchemes`. If it is
+          // `-high-contrast`, then `allowedSchemes` contains no high contrast
+          // schemes. And since there are at least two themes, the remaining
+          // themes must be `light` and `dark`. Thus we can just:
+          return lightness;
+        })();
+
       setScheme(scheme);
       document.documentElement.dataset.colorScheme = scheme;
     },
