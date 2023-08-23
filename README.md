@@ -111,3 +111,29 @@ This currently supports `light`, `dark`, `light-high-contrast` and `dark-high-co
 If your app does not support high contrast modes, you can disable those.
 See the [documentation on `ColorSchemeProvider`](./src/colorScheme.tsx) to understand how this system works and what you have to do to set it up.
 
+
+## Local development
+
+To work on appkit or test patches locally (i.e. whenever you can't use NPM releases), you can include like this:
+
+- In your local `appkit` directory run `npm link` (`sudo` likely required)
+- In the apps directory, run `npm link @opencast/appkit`
+
+This essentially just does `ln -s /path/to/appkit /path/to/app/node_modules/@opencast/appkit`, i.e. create a symbolic link.
+Whenever you run `npm ci` or `npm install` in the app's directory, that link is overwritten and replaced with the NPM version of appkit; then you have to run the second command `npm link @opencast/appkit` again.
+
+Unfortunately, this can lead to problems with webpack and duplicated dependencies.
+To avoid that, add the following to your webpack config:
+
+```js
+resolve: {
+    alias: {
+      "react": path.join(__dirname, "node_modules/react"),
+      "@emotion/react": path.join(__dirname, "node_modules/@emotion/react"),
+    },
+},
+```
+
+A more in-depth explanation of why this is necessary can be found [here](https://gist.github.com/LukasKalbertodt/382cb53a85fcf6e7d1f5235625c6f4fb).
+Whenever you encounter weird runtime errors complaining about imports, it could be this issue.
+Then you can try adding another alias for the problematic dependency.
