@@ -68,6 +68,7 @@ neutral90    79.0                  #c4c4c4
 
 **Light mode**
 ```
+accent9   #044a81   lch(30.1%  37.2  266.4)
 accent8   #215D99   lch(38.1%  39.1  266.2)
 accent7   #3073B8   lch(46.8%  43.5  265.8)
 accent6   #3E8AD8   lch(55.5%  47.8  265.0)
@@ -77,8 +78,9 @@ accent4   #71B4F9   lch(71.0%  42.0  260.1)
 
 **Dark mode**
 ```
-accent8   #6b90c5   lch(58.7%  32.1  265.8)
-accent7   #5185c6   lch(54.1%  39.8  266.0)
+accent9   #85ace3   lch(69.1%  32.5  264.7)
+accent8   #7da4db   lch(66.1%  32.7  265.0)
+accent7   #588ccd   lch(56.8%  39.6  265.5)
 accent6   #1f72ba   lch(46.1%  45.8  264.7)
 accent5   #1c619e   lch(39.4%  40.0  264.4)
 accent4   #195483   lch(33.9%  32.8  260.3)
