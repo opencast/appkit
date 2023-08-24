@@ -152,6 +152,12 @@ export type HeaderMenuItemProps = JSX.IntrinsicElements["li"] & {
  */
 export const HeaderMenuItem: React.FC<HeaderMenuItemProps> = ({ icon, children, wrapper, ...rest }) => {
   const config = useAppkitConfig();
+  const focusBgColor = useColorScheme().scheme.includes("high-contrast")
+    ? config.colors.focus
+    : config.colors.neutral10;
+  const focusTextColor = useColorScheme().scheme.includes("high-contrast")
+    ? config.colors.neutral05
+    : config.colors.neutral90;
 
   const css = {
     display: "flex",
@@ -171,8 +177,8 @@ export const HeaderMenuItem: React.FC<HeaderMenuItemProps> = ({ icon, children, 
       "& > path": { strokeWidth: "inherit" },
     },
     ":hover, :focus": {
-      backgroundColor: config.colors.neutral10,
-      color: "inherit",
+      backgroundColor: focusBgColor,
+      color: focusTextColor,
     },
     ...focusStyle(config, { inset: true }),
   } as const;
