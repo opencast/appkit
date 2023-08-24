@@ -62,7 +62,7 @@ export type HeaderMenuProps = {
 export const HeaderMenu: React.FC<HeaderMenuProps> = ({ close, items, label, breakpoint }) => {
   const config = useAppkitConfig();
   const isDark = useColorScheme().scheme === "dark";
-  const bgColor = useColorScheme().scheme ? config.colors.neutral15 : config.colors.neutral05;
+  const bgColor = isDark ? config.colors.neutral15 : config.colors.neutral05;
 
   return (
     <Floating
