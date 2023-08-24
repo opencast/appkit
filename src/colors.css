@@ -58,7 +58,7 @@ html[data-color-scheme="dark"] {
   color-scheme: dark;
 }
 
-html[data-color-scheme="light-high-contrast"], html:not([data-color-scheme]) {
+html[data-color-scheme="light-high-contrast"] {
   --color-neutral05: #fff;
   --color-neutral10: #fff;
   --color-neutral15: #fff;
@@ -88,7 +88,7 @@ html[data-color-scheme="light-high-contrast"], html:not([data-color-scheme]) {
   color-scheme: light-high-contrast;
 }
 
-html[data-color-scheme="dark-high-contrast"], html:not([data-color-scheme]) {
+html[data-color-scheme="dark-high-contrast"] {
   --color-neutral05: #000;
   --color-neutral10: #000;
   --color-neutral15: #000;
