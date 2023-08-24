@@ -85,7 +85,7 @@ html[data-color-scheme="light-high-contrast"] {
   --color-accent4: #000099;
 
   --color-focus: #000099;
-  color-scheme: light-high-contrast;
+  color-scheme: light;
 }
 
 html[data-color-scheme="dark-high-contrast"] {
@@ -115,7 +115,7 @@ html[data-color-scheme="dark-high-contrast"] {
   --color-accent4: #a6ffea;
 
   --color-focus: #a6ffea;
-  color-scheme: dark-high-contrast;
+  color-scheme: dark;
 }
 
 /** TODO: Improve colors for high contrast modes */
