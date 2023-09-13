@@ -4,7 +4,7 @@ import { FiArrowLeft, FiCheck } from "react-icons/fi";
 
 import {
   useAppkitConfig, Floating, FloatingContainer, FloatingContainerProps, FloatingHandle,
-  FloatingTrigger, ProtoButton, focusStyle, useColorScheme,
+  FloatingTrigger, ProtoButton, focusStyle, useColorScheme, match,
 } from ".";
 
 
@@ -61,15 +61,20 @@ export type HeaderMenuProps = {
  */
 export const HeaderMenu: React.FC<HeaderMenuProps> = ({ close, items, label, breakpoint }) => {
   const config = useAppkitConfig();
-  const isDark = useColorScheme().scheme === "dark";
-  const bgColor = isDark ? config.colors.neutral15 : config.colors.neutral05;
+  const { scheme, isHighContrast } = useColorScheme();
+  const bgColor = match(scheme, {
+    "light": () => config.colors.neutral05,
+    "dark": () => config.colors.neutral15,
+    "dark-high-contrast": () => config.colors.neutral05,
+    "light-high-contrast": () => config.colors.neutral05,
+  });
 
   return (
     <Floating
       backgroundColor={bgColor}
-      borderWidth={isDark ? 1 : 0}
+      borderWidth={scheme !== "light" ? 1 : 0}
       padding={0}
-      shadowBlur={8}
+      shadowBlur={isHighContrast ? 0 : 8}
     >
       <div
         onClick={e => {
@@ -152,10 +157,10 @@ export type HeaderMenuItemProps = JSX.IntrinsicElements["li"] & {
  */
 export const HeaderMenuItem: React.FC<HeaderMenuItemProps> = ({ icon, children, wrapper, ...rest }) => {
   const config = useAppkitConfig();
-  const focusBgColor = useColorScheme().scheme.includes("high-contrast")
-    ? config.colors.focus
+  const focusBgColor = useColorScheme().isHighContrast
+    ? config.colors.neutral90
     : config.colors.neutral10;
-  const focusTextColor = useColorScheme().scheme.includes("high-contrast")
+  const focusTextColor = useColorScheme().isHighContrast
     ? config.colors.neutral05
     : config.colors.neutral90;
 
