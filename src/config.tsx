@@ -13,6 +13,7 @@ export type AppkitConfig = {
 };
 
 export type ColorConfig = {
+  neutral00: string,
   neutral05: string,
   neutral10: string,
   neutral15: string,
@@ -43,6 +44,7 @@ export type ColorConfig = {
 
 export const DEFAULT_CONFIG: AppkitConfig = {
   colors: {
+    neutral00: "var(--color-neutral00)",
     neutral05: "var(--color-neutral05)",
     neutral10: "var(--color-neutral10)",
     neutral15: "var(--color-neutral15)",

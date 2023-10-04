@@ -33,6 +33,7 @@ You may make the grey tone configurable in your app (e.g. to allow organizations
 **Light mode**
 ```
              Perceived brightness  sRGB hex code
+neutral00    100                   #ffffff
 neutral05    99.7                  #fefefe
 neutral10    95.9                  #f3f3f3
 neutral15    92.0                  #e8e8e8
@@ -50,6 +51,7 @@ neutral90    8.0                   #181818
 **Dark mode**
 ```
              Perceived brightness  sRGB hex code
+neutral00    5.0                   #111111
 neutral05    7.7                   #171717
 neutral10    11.5                  #1e1e1e
 neutral15    15.3                  #262626

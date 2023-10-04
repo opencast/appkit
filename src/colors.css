@@ -1,4 +1,5 @@
 html[data-color-scheme="light"], html:not([data-color-scheme]) {
+  --color-neutral00: #ffffff;
   --color-neutral05: #fefefe;
   --color-neutral10: #f3f3f3;
   --color-neutral15: #e8e8e8;
@@ -30,6 +31,7 @@ html[data-color-scheme="light"], html:not([data-color-scheme]) {
 }
 
 html[data-color-scheme="dark"] {
+  --color-neutral00: #111111;
   --color-neutral05: #171717;
   --color-neutral10: #1e1e1e;
   --color-neutral15: #262626;
@@ -61,6 +63,7 @@ html[data-color-scheme="dark"] {
 }
 
 html[data-color-scheme="light-high-contrast"] {
+  --color-neutral00: #fff;
   --color-neutral05: #fff;
   --color-neutral10: #fff;
   --color-neutral15: #fff;
@@ -91,6 +94,7 @@ html[data-color-scheme="light-high-contrast"] {
 }
 
 html[data-color-scheme="dark-high-contrast"] {
+  --color-neutral00: #000;
   --color-neutral05: #000;
   --color-neutral10: #000;
   --color-neutral15: #000;
