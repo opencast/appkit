@@ -16,6 +16,27 @@ that's the whole point: to get a pre-defined design.
 - Provide color values, most likely by copying [`colors.css`](./src/colors.css) into your `index.html`. See "colors" section below.
 - Optionally configure appkit via `AppkitConfigProvider`.
 
+## Icons
+
+While this library does not ship any icons itself, apps in the Opencast context should follow these rules to ensure consistency:
+
+- **Use [Lucide icons](https://lucide.dev/)!**
+  - Historical note: this is a fork and superset of [Feather icons](https://feathericons.com/), which is not maintained anymore.
+    Lucide contains a lot more icons.
+    Even if Feather icons are identical to Lucide, always import the Lucide icon for code consistency!
+- In special cases, you can use icons from [Hero icons v1 (outline version)](https://v1.heroicons.com/).
+  Those icons look visually very similar to Lucide icons.
+  Still: there should be a good reason for not using Lucide!
+  Currently, there are two important exceptions in which you should use the Hero icons:
+  - Hero's `search` is better than the one from Lucide, which is too stubby and looks like a Q.
+  - Hero's `translate` is much better than Lucides `languages` and more on point than `globe`.
+
+It's convenient to use [`react-icons`](https://react-icons.github.io/react-icons/) to import all needed icons into your codebase.
+
+Should your app require an icon that's not available in Lucide or Hero, you can create a new one.
+This should follow [Lucide's Design Principles](https://lucide.dev/guide/design/icon-design-guide).
+Unless the icon is very particular (i.e. unlikely to be useful in any other application), it should be [contributed back to Lucide](https://github.com/lucide-icons/lucide/blob/main/CONTRIBUTING.md).
+
 
 ## Colors
 
