@@ -14,6 +14,7 @@ import {
   useFocus,
   useHover,
   useInteractions,
+  useListNavigation,
   useRole,
 } from "@floating-ui/react";
 import React, { ReactNode, ReactElement, useRef, useState, useImperativeHandle } from "react";
@@ -28,6 +29,7 @@ import { useAppkitConfig } from "./config";
 // elements.
 
 type Context = {
+    activeIndex: number | null;
     open: boolean;
     setOpen: null | ((v: boolean) => void);
     settings: Required<Pick<
@@ -45,9 +47,11 @@ type Context = {
     };
     refs: Pick<ReturnType<typeof useFloating>["refs"], "setReference" | "setFloating"> & {
         arrowRef: React.MutableRefObject<HTMLDivElement | null>;
+        listRef: React.MutableRefObject<HTMLElement[] | null>;
     };
     getReferenceProps: ReturnType<typeof useInteractions>["getReferenceProps"];
     getFloatingProps: ReturnType<typeof useInteractions>["getFloatingProps"];
+    getItemProps: ReturnType<typeof useInteractions>["getItemProps"];
 };
 
 const FloatingContext = React.createContext<Context | null>(null);
@@ -62,6 +66,18 @@ const useFloatingContext = () => {
   return context;
 };
 
+export const useFloatingItemProps = () => {
+  const context = useFloatingContext();
+  return (index: number) => ({
+    tabIndex: context.activeIndex === index ? 0 : -1,
+    ref: (node: HTMLElement) => {
+      if (context.refs.listRef.current !== null) {
+        context.refs.listRef.current[index] = node;
+      }
+    },
+    ...context.getItemProps(),
+  });
+};
 
 // ===== <FloatingContainer> =====================================================================
 
@@ -141,10 +157,12 @@ export const FloatingContainer = React.forwardRef<FloatingHandle, FloatingContai
     className,
     ...rest
   }, ref) => {
+    const [activeIndex, setActiveIndex] = useState<number | null>(null);
     const [open, setOpen] = useState(false);
     const actualOpen = "open" in rest ? rest.open : open;
     const arrowRef = useRef<HTMLDivElement>(null);
     const div = useRef<HTMLDivElement>(null);
+    const listRef = useRef<HTMLElement[]>([]);
 
     useImperativeHandle(ref, () => Object.assign(div.current ?? unreachable(), {
       open: () => setOpen(true),
@@ -202,19 +220,28 @@ export const FloatingContainer = React.forwardRef<FloatingHandle, FloatingContai
       referencePress: ariaRole === "tooltip",
     });
     const role = useRole(floatContext, { role: ariaRole });
-    const { getReferenceProps, getFloatingProps }
-            = useInteractions([hover, focus, click, dismiss, role]);
+    const listNavigation = useListNavigation(floatContext, {
+      listRef,
+      activeIndex,
+      loop: true,
+      focusItemOnHover: false,
+      onNavigate: setActiveIndex,
+    });
+    const { getReferenceProps, getFloatingProps, getItemProps }
+            = useInteractions([hover, focus, click, dismiss, role, listNavigation]);
 
 
     // Setup context
     const context: Context = {
+      activeIndex,
       open: actualOpen,
       setOpen: ariaRole === "tooltip" ? setOpen : null,
       settings: { arrowSize, distance, borderRadius, viewPortMargin },
       calculated: { x, y, placement, arrow: middlewareData.arrow },
-      refs: { arrowRef, ...refs },
+      refs: { arrowRef, listRef, ...refs },
       getReferenceProps,
       getFloatingProps,
+      getItemProps,
     };
 
     return (
