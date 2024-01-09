@@ -1,10 +1,10 @@
-import { ReactElement, ReactNode, useRef } from "react";
+import { ReactElement, ReactNode, forwardRef, useRef } from "react";
 import { CSSObject, jsx } from "@emotion/react";
 import { FiArrowLeft, FiCheck } from "react-icons/fi";
 
 import {
   useAppkitConfig, Floating, FloatingContainer, FloatingContainerProps, FloatingHandle,
-  FloatingTrigger, ProtoButton, focusStyle, useColorScheme, match,
+  FloatingTrigger, ProtoButton, focusStyle, useColorScheme, match, useFloatingItemProps,
 } from ".";
 
 
@@ -62,6 +62,7 @@ export type HeaderMenuProps = {
 export const HeaderMenu: React.FC<HeaderMenuProps> = ({ close, items, label, breakpoint }) => {
   const config = useAppkitConfig();
   const { scheme, isHighContrast } = useColorScheme();
+  const itemProps = useFloatingItemProps();
   const bgColor = match(scheme, {
     "light": () => config.colors.neutral05,
     "dark": () => config.colors.neutral15,
@@ -125,6 +126,7 @@ export const HeaderMenu: React.FC<HeaderMenuProps> = ({ close, items, label, bre
           <ReturnButton onClick={close} breakpoint={breakpoint}>{label}</ReturnButton>
           {items.map(({ keepOpenAfterClick, ...props }, i) => <HeaderMenuItem
             key={i}
+            {...itemProps(i)}
             {...props}
             onClick={e => {
               props?.onClick?.(e);
@@ -141,7 +143,7 @@ export const HeaderMenu: React.FC<HeaderMenuProps> = ({ close, items, label, bre
 
 
 
-export type HeaderMenuItemProps = JSX.IntrinsicElements["li"] & {
+export type HeaderMenuItemProps = Omit<JSX.IntrinsicElements["li"], "ref"> & {
   icon?: JSX.Element;
   wrapper?: JSX.Element;
 };
@@ -155,66 +157,73 @@ export type HeaderMenuItemProps = JSX.IntrinsicElements["li"] & {
  * `children` passed to this component. If `wrapper` is not set, the style is
  * instead applied to the `<li>`, which also contains said icon+children.
  */
-export const HeaderMenuItem: React.FC<HeaderMenuItemProps> = ({ icon, children, wrapper, ...rest }) => {
-  const config = useAppkitConfig();
-  const focusBgColor = useColorScheme().isHighContrast
-    ? config.colors.neutral90
-    : config.colors.neutral10;
-  const focusTextColor = useColorScheme().isHighContrast
-    ? config.colors.neutral05
-    : config.colors.neutral90;
+export const HeaderMenuItem = forwardRef<HTMLElement, HeaderMenuItemProps>(
+  ({ icon, children, wrapper, ...rest }, ref) => {
+    const config = useAppkitConfig();
+    const focusBgColor = useColorScheme().isHighContrast
+      ? config.colors.neutral90
+      : config.colors.neutral10;
+    const focusTextColor = useColorScheme().isHighContrast
+      ? config.colors.neutral05
+      : config.colors.neutral90;
 
-  const css = {
-    display: "flex",
-    gap: 16,
-    alignItems: "center",
-    minWidth: 160,
-    padding: 12,
-    textDecoration: "none",
-    color: config.colors.neutral90,
-    cursor: "pointer",
-    whiteSpace: "nowrap",
-    "& > svg": {
-      maxHeight: 23,
-      fontSize: 23,
-      width: 24,
-      strokeWidth: 2,
-      "& > path": { strokeWidth: "inherit" },
-    },
-    ":hover, :focus": {
-      backgroundColor: focusBgColor,
-      color: focusTextColor,
-    },
-    ...focusStyle(config, { inset: true }),
-  } as const;
+    const css = {
+      display: "flex",
+      gap: 16,
+      alignItems: "center",
+      minWidth: 160,
+      padding: 12,
+      textDecoration: "none",
+      color: config.colors.neutral90,
+      cursor: "pointer",
+      whiteSpace: "nowrap",
+      "& > svg": {
+        maxHeight: 23,
+        fontSize: 23,
+        width: 24,
+        strokeWidth: 2,
+        "& > path": { strokeWidth: "inherit" },
+      },
+      ":hover, :focus": {
+        backgroundColor: focusBgColor,
+        color: focusTextColor,
+      },
+      ...focusStyle(config, { inset: true }),
+    } as const;
 
-  const { className, ...outerProps } = rest;
-  const wrapperElem = wrapper ?? <></>;
-  return (
-    <li
-      role="menuitem"
-      {...outerProps}
-      css={{
-        ":not(:first-of-type)": {
-          borderTop: `1px solid ${config.colors.neutral30}`,
-        },
-        ...!wrapper && css,
-      }}
-      {...!wrapper && { className }}
-    >
-      {jsx(wrapperElem.type, {
-        key: wrapperElem.key,
-        ...wrapperElem.props,
-        children: <>
-          {icon ?? <svg />}
-          <div>{children}</div>
-        </>,
-        ...wrapper && { className },
-        ...wrapper && { css: [css, { borderRadius: "inherit" }] },
-      })}
-    </li>
-  );
-};
+    const { className, ...outerProps } = rest;
+    const wrapperElem = wrapper ?? <></>;
+    return (
+      <li
+        role="menuitem"
+        {...outerProps}
+        css={{
+          ":not(:first-of-type)": {
+            borderTop: `1px solid ${config.colors.neutral30}`,
+          },
+          ...!wrapper && css,
+        }}
+        {...!wrapper && {
+          className,
+          ref: r => typeof ref === "function" ? ref(r) : (ref ? ref.current = r : {}),
+        }}
+      >
+        {jsx(wrapperElem.type, {
+          key: wrapperElem.key,
+          ...wrapperElem.props,
+          children: <>
+            {icon ?? <svg />}
+            <div>{children}</div>
+          </>,
+          ...wrapper && {
+            className,
+            ref: (r: HTMLElement | null) => typeof ref === "function" ? ref(r) : (ref ? ref.current = r : {}),
+          },
+          ...wrapper && { css: [css, { borderRadius: "inherit" }] },
+        })}
+      </li>
+    );
+  });
 
 /**
  * Helper to create props for a common kind of `HeaderItem`: one that is
