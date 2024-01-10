@@ -43,6 +43,6 @@ export const focusStyle = (
     "&:focus-visible": {
       outline: `${width}px solid ${config.colors.focus}`,
       outlineOffset: `${inset ? -width : offset}px`,
-    }
+    },
   } as const;
 };

@@ -3,31 +3,31 @@ import React from "react";
 
 
 type Props = JSX.IntrinsicElements["svg"] & {
-    size?: number | string;
+  size?: number | string;
 };
 
 export const Spinner = React.forwardRef<SVGSVGElement, Props>(({ size = "1em", ...rest }, ref) => (
-    <svg
-        ref={ref}
-        viewBox="0 0 50 50"
-        css={{
-            width: size,
-            height: size,
-            animation: `2s linear infinite none ${keyframes({
-                "0%": { transform: "rotate(0)" },
-                "100%": { transform: "rotate(360deg)" },
-            })}`,
-            "& > circle": {
-                fill: "none",
-                stroke: "currentcolor",
-                strokeWidth: 4,
-                strokeDasharray: 83, // 2/3 of circumference
-                strokeLinecap: "round",
-            },
+  <svg
+    ref={ref}
+    viewBox="0 0 50 50"
+    css={{
+      width: size,
+      height: size,
+      animation: `2s linear infinite none ${keyframes({
+        "0%": { transform: "rotate(0)" },
+        "100%": { transform: "rotate(360deg)" },
+      })}`,
+      "& > circle": {
+        fill: "none",
+        stroke: "currentcolor",
+        strokeWidth: 4,
+        strokeDasharray: 83, // 2/3 of circumference
+        strokeLinecap: "round",
+      },
 
-        }}
-        {...rest}
-    >
-        <circle cx="25" cy="25" r="20" />
-    </svg>
+    }}
+    {...rest}
+  >
+    <circle cx="25" cy="25" r="20" />
+  </svg>
 ));

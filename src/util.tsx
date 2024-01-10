@@ -22,27 +22,27 @@ import { MutableRefObject, useEffect } from "react";
  * ```
  */
 export function match<T extends string | number, Out>(
-    value: T,
-    arms: Record<T, () => Out>,
+  value: T,
+  arms: Record<T, () => Out>,
 ): Out;
 export function match<T extends string | number, Out>(
-    value: T,
-    arms: Partial<Record<T, () => Out>>,
-    fallback: () => Out,
+  value: T,
+  arms: Partial<Record<T, () => Out>>,
+  fallback: () => Out,
 ): Out;
 export function match<T extends string | number, Out>(
-    value: T,
-    arms: Partial<Record<T, () => Out>>,
-    fallback?: () => Out,
+  value: T,
+  arms: Partial<Record<T, () => Out>>,
+  fallback?: () => Out,
 ): Out {
-    return fallback === undefined
-        // Unfortunately, we haven't found a way to make the TS typesystem to
-        // understand that in the case of `fallback === undefined`, `arms` is
-        // not a partial map. But it is, as you can see from the two callable
-        // signatures above.
-        // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
-        ? arms[value]!()
-        : (arms[value] as (() => Out) | undefined ?? fallback)();
+  return fallback === undefined
+    // Unfortunately, we haven't found a way to make the TS typesystem to
+    // understand that in the case of `fallback === undefined`, `arms` is
+    // not a partial map. But it is, as you can see from the two callable
+    // signatures above.
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    ? arms[value]!()
+    : (arms[value] as (() => Out) | undefined ?? fallback)();
 }
 
 
@@ -54,18 +54,18 @@ export const screenWidthAbove = (w: number) => `@media not all and (max-width: $
 
 /** Helper to react to clicks outside of the DOM element referred to by `ref`. */
 export const useOnOutsideClick = (
-    ref: MutableRefObject<Node | null>,
-    callback: () => void,
+  ref: MutableRefObject<Node | null>,
+  callback: () => void,
 ): void => {
-    useEffect(() => {
-        const handler = (event: MouseEvent) => {
-            const target = event.target;
-            if (ref.current && target instanceof Element && !ref.current.contains(target)) {
-                callback();
-            }
-        };
+  useEffect(() => {
+    const handler = (event: MouseEvent) => {
+      const target = event.target;
+      if (ref.current && target instanceof Element && !ref.current.contains(target)) {
+        callback();
+      }
+    };
 
-        document.addEventListener("mousedown", handler);
-        return () => document.removeEventListener("mousedown", handler);
-    });
+    document.addEventListener("mousedown", handler);
+    return () => document.removeEventListener("mousedown", handler);
+  });
 };

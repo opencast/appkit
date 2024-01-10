@@ -134,7 +134,7 @@ export const ColorSchemeProvider: React.FC<ColorSchemeProviderProps> = ({
       // If it is set to "auto" we need to figure out the best scheme given
       // browser preferences. This is a bit more complicated due to
       // `allowedSchemes`.
-      let scheme = pref !== "auto"
+      const scheme = pref !== "auto"
         ? pref
         : (() => {
           const lightness = window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
