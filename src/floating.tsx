@@ -47,7 +47,7 @@ type Context = {
     };
     refs: Pick<ReturnType<typeof useFloating>["refs"], "setReference" | "setFloating"> & {
         arrowRef: React.MutableRefObject<HTMLDivElement | null>;
-        listRef: React.MutableRefObject<HTMLElement[] | null>;
+        listRef: React.MutableRefObject<Array<HTMLElement | null>>;
     };
     getReferenceProps: ReturnType<typeof useInteractions>["getReferenceProps"];
     getFloatingProps: ReturnType<typeof useInteractions>["getFloatingProps"];
@@ -70,7 +70,7 @@ export const useFloatingItemProps = () => {
   const context = useFloatingContext();
   return (index: number) => ({
     tabIndex: context.activeIndex === index ? 0 : -1,
-    ref: (node: HTMLElement) => {
+    ref: (node: HTMLElement | null) => {
       if (context.refs.listRef.current !== null) {
         context.refs.listRef.current[index] = node;
       }
@@ -162,7 +162,7 @@ export const FloatingContainer = React.forwardRef<FloatingHandle, FloatingContai
     const actualOpen = "open" in rest ? rest.open : open;
     const arrowRef = useRef<HTMLDivElement>(null);
     const div = useRef<HTMLDivElement>(null);
-    const listRef = useRef<HTMLElement[]>([]);
+    const listRef = useRef<Array<HTMLElement | null>>([]);
 
     useImperativeHandle(ref, () => Object.assign(div.current ?? unreachable(), {
       open: () => setOpen(true),
