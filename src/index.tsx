@@ -8,7 +8,9 @@ export * from "./floating";
 export * from "./header";
 export * from "./spinner";
 export * from "./util";
+export * from "./utilFunc";
 export * from "./modal";
+export * from "./styledButton";
 
 
 /**

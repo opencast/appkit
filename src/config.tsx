@@ -28,10 +28,19 @@ export type ColorConfig = {
   neutral90: string,
 
   danger0: string,
+  danger0BwInverted: string;
   danger1: string,
+  danger1BwInverted: string;
   danger2: string,
   danger4: string,
   danger5: string,
+
+  happy0: string;
+  happy0BwInverted: string;
+  happy1: string;
+  happy1BwInverted: string;
+  happy2: string;
+  happy2BwInverted: string;
 
   accent8: string;
   accent7: string;
@@ -59,10 +68,19 @@ export const DEFAULT_CONFIG: AppkitConfig = {
     neutral90: "var(--color-neutral90)",
 
     danger0: "var(--color-danger0)",
+    danger0BwInverted: "var(--color-danger0-bw-inverted)",
     danger1: "var(--color-danger1)",
+    danger1BwInverted: "var(--color-danger1-bw-inverted)",
     danger2: "var(--color-danger2)",
     danger4: "var(--color-danger4)",
     danger5: "var(--color-danger5)",
+
+    happy0: "var(--color-happy0)",
+    happy0BwInverted: "var(--color-happy0-bw-inverted)",
+    happy1: "var(--color-happy1)",
+    happy1BwInverted: "var(--color-happy1-bw-inverted)",
+    happy2: "var(--color-happy2)",
+    happy2BwInverted: "var(--color-happy2-bw-inverted)",
 
     accent8: "var(--color-accent8)",
     accent7: "var(--color-accent7)",
