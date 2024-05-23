@@ -1,9 +1,11 @@
 import { AppkitConfig } from "./config";
 
 export * from "./button";
+export * from "./card";
 export * from "./colorScheme";
 export * from "./config";
 export * from "./err";
+export * from "./errorBox";
 export * from "./floating";
 export * from "./header";
 export * from "./spinner";
