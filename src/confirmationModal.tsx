@@ -18,7 +18,7 @@ type ConfirmationModalProps = Omit<ModalProps, "closable" | "title"> & {
   onSubmit?: () => void;
   /** Strings that will be displayed in the UI */
   text: {
-    /** Text on the button to close the modal */
+    /** Text on the button to cancel the modal */
     cancel: string,
     /** Text on the button to close the modal */
     close: string,

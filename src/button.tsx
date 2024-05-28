@@ -75,8 +75,6 @@ const css = (kind: Kind, extraCss: Interpolation<Theme> = {}): Interpolation<The
         color: config.colors.happy0,  // happy1BwInverted
       },
     }),
-
-    ...focusStyle(config, { offset: -1 }),
   });
 
   return {
@@ -99,6 +97,7 @@ const css = (kind: Kind, extraCss: Interpolation<Theme> = {}): Interpolation<The
     "&:not([disabled])": {
       cursor: "pointer",
       ...notDisabledStyle,
+      ...focusStyle(config, { offset: -1 }),
     },
     ...extraCss as Record<string, unknown>,
   };
