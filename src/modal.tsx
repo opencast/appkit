@@ -20,7 +20,7 @@ export type ModalProps = {
   open?: boolean;
   initialFocus?: false;
   text: {
-    generalActionClose: string,
+    close: string,
   },
 };
 
@@ -41,7 +41,6 @@ export const Modal = forwardRef<ModalHandle, PropsWithChildren<ModalProps>>(({
   text,
 }, ref) => {
   const config = useAppkitConfig();
-  // const { t } = useTranslation();
   const [isOpen, setOpen] = useState(open);
   const isDark = useColorScheme().scheme === "dark";
 
@@ -99,7 +98,7 @@ export const Modal = forwardRef<ModalHandle, PropsWithChildren<ModalProps>>(({
           }}>
             <h2 css={{ flex: 1 }}>{title}</h2>
             {closable && <ProtoButton
-              aria-label={text.generalActionClose}
+              aria-label={text.close}
               tabIndex={0}
               onClick={() => setOpen(false)}
               css={{
@@ -107,7 +106,7 @@ export const Modal = forwardRef<ModalHandle, PropsWithChildren<ModalProps>>(({
                 cursor: "pointer",
                 display: "inline-flex",
                 borderRadius: 4,
-                ...focusStyle(config, { inset: true }),
+                ...focusStyle(config),
               }}
             ><LuX /></ProtoButton>}
           </div>

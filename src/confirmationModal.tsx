@@ -7,7 +7,7 @@ import {
   useRef,
   useImperativeHandle,
 } from "react";
-import { bug, ModalProps, ModalHandle, Modal, Spinner, Button, boxError } from ".";
+import { ModalProps, ModalHandle, Modal, Spinner, Button, boxError } from ".";
 import { currentRef } from "./utilFunc";
 
 
@@ -16,9 +16,9 @@ type ConfirmationModalProps = Omit<ModalProps, "closable" | "title"> & {
   buttonContent: ReactNode;
   onSubmit?: () => void;
   text: {
-    generalActionCancel: string,
-    generalActionClose: string,
-    manageAreYouSure: string,
+    cancel: string,
+    close: string,
+    areYouSure: string,
   },
 };
 
@@ -36,7 +36,7 @@ export const ConfirmationModal
       text,
       children,
     }, ref) => {
-      const title = titleOverride ?? text.manageAreYouSure ?? bug("missing translation");
+      const title = titleOverride ?? text.areYouSure;
 
       const [inFlight, setInFlight] = useState(false);
       const [error, setError] = useState<JSX.Element | undefined>();
@@ -72,7 +72,7 @@ export const ConfirmationModal
         title={title}
         closable={!inFlight}
         ref={modalRef}
-        text={{ generalActionClose: text.generalActionClose }}
+        text={text}
       >
         {children}
         <form onSubmit={onSubmitWrapper} css={{ marginTop: 32 }}>
@@ -85,7 +85,7 @@ export const ConfirmationModal
             <Button disabled={inFlight} onClick={
               () => currentRef(modalRef).close?.()
             }>
-              {text.generalActionCancel}
+              {text.cancel}
             </Button>
             <Button disabled={inFlight} type="submit" kind="danger" css={{
               whiteSpace: "normal",

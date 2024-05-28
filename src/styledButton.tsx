@@ -27,7 +27,6 @@ const css = (kind: Kind, extraCss: Interpolation<Theme> = {}): Interpolation<The
         border: `1px solid ${config.colors.neutral60}`,
         backgroundColor: config.colors.neutral15,
       },
-      ...focusStyle(config, { offset: -1 }),
     }),
 
     "danger": () => ({
@@ -38,7 +37,6 @@ const css = (kind: Kind, extraCss: Interpolation<Theme> = {}): Interpolation<The
         backgroundColor: config.colors.danger4,
         color: config.colors.danger0,  // danger0BwInverted
       },
-      ...focusStyle(config, { offset: 1 }),
     }),
 
     "happy": () => ({
@@ -50,8 +48,9 @@ const css = (kind: Kind, extraCss: Interpolation<Theme> = {}): Interpolation<The
         backgroundColor: config.colors.happy4,
         color: config.colors.happy0,  // happy1BwInverted
       },
-      ...focusStyle(config, { offset: 1 }),
     }),
+
+    ...focusStyle(config, { offset: -1 }),
   });
 
   return {
