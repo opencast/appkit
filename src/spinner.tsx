@@ -1,15 +1,16 @@
 import { keyframes } from "@emotion/react";
 import React from "react";
-import { useAppkitConfig } from ".";
-
 
 type Props = JSX.IntrinsicElements["svg"] & {
   size?: number | string;
+  strokeColor?: string,
 };
 
-export const Spinner = React.forwardRef<SVGSVGElement, Props>(({ size = "1em", ...rest }, ref) => {
-  const config = useAppkitConfig();
-
+export const Spinner = React.forwardRef<SVGSVGElement, Props>(({
+  size = "1em",
+  strokeColor = "currentcolor",
+  ...rest
+}, ref) => {
   return (
     <svg
       ref={ref}
@@ -23,7 +24,7 @@ export const Spinner = React.forwardRef<SVGSVGElement, Props>(({ size = "1em", .
         })}`,
         "& > circle": {
           fill: "none",
-          stroke: config.colors.neutral90,
+          stroke: strokeColor,
           strokeWidth: 4,
           strokeDasharray: 83, // 2/3 of circumference
           strokeLinecap: "round",
