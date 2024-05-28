@@ -16,6 +16,10 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ),
 );
 
+/**
+ * Returns css for different types of buttons.
+ * Comes in the kinds "normal", "danger" and "happy".
+ */
 const css = (kind: Kind, extraCss: Interpolation<Theme> = {}): Interpolation<Theme> => {
   const config = useAppkitConfig();
 

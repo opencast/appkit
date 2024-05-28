@@ -14,12 +14,18 @@ import {
 
 export type ModalProps = {
   title: string;
+  /** Whether the user can close the modal. If false, the application
+  *  will have to close the modal eventually. */
   closable?: boolean;
   className?: string;
   closeOnOutsideClick?: boolean;
   open?: boolean;
+  /** If true, the first element in the modal automatically be focused. If false,
+   * no element is initially focused */
   initialFocus?: false;
+  /** Strings that will be displayed in the UI */
   text: {
+    /** Text on the button to close the modal */
     close: string,
   },
 };
@@ -30,6 +36,10 @@ export type ModalHandle = {
   isOpen?: () => boolean;
 };
 
+/**
+ * A component that sits in the middle of the screen, darkens the rest of the
+ * screen and traps user focus.
+ */
 export const Modal = forwardRef<ModalHandle, PropsWithChildren<ModalProps>>(({
   title,
   closable = true,

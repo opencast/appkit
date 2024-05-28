@@ -13,15 +13,25 @@ import { currentRef } from "./utilFunc";
 
 type ConfirmationModalProps = Omit<ModalProps, "closable" | "title"> & {
   title?: string;
+  /** What to display in the confirm button. A string can be enough. */
   buttonContent: ReactNode;
   onSubmit?: () => void;
+  /** Strings that will be displayed in the UI */
   text: {
+    /** Text on the button to close the modal */
     cancel: string,
+    /** Text on the button to close the modal */
     close: string,
+    /** Text asking the question that should be confirmed or cancelled. */
     areYouSure: string,
   },
 };
 
+/**
+ * A component that sits in the middle of the screen, darkens the rest of the
+ * screen and traps user focus. Also asks for confirmation, and closing can
+ * be delayed if a time intensive action was triggered.
+ */
 export type ConfirmationModalHandle = ModalHandle & {
   done: () => void;
   reportError: (error: JSX.Element) => void;
