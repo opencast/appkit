@@ -8,7 +8,7 @@ import {
   useImperativeHandle,
 } from "react";
 import { ModalProps, ModalHandle, Modal, Spinner, Button, boxError } from ".";
-import { currentRef } from "./utilFunc";
+import { currentRef } from "./util";
 
 
 type ConfirmationModalProps = Omit<ModalProps, "closable" | "title"> & {
