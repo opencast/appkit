@@ -1,6 +1,6 @@
 import React from "react";
 import { Interpolation, Theme } from "@emotion/react";
-import { focusStyle, match, useAppkitConfig } from ".";
+import { AppkitConfig, focusStyle, match, useAppkitConfig } from ".";
 
 /**
  * A mostly unstyled button used to build buttons. Always use this instead of
@@ -33,18 +33,24 @@ type ButtonProps = JSX.IntrinsicElements["button"] & {
 
 /** A styled button */
 export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
-  ({ kind = "normal", extraCss, children, ...rest }, ref) => (
-    <button ref={ref} type="button" css={css(kind, extraCss)} {...rest}>{children}</button>
-  ),
+  ({ kind = "normal", extraCss, children, ...rest }, ref) => {
+    const config = useAppkitConfig();
+
+    return (
+      <button ref={ref} type="button" css={css(config, kind, extraCss)} {...rest}>{children}</button>
+    );
+  },
 );
 
 /**
  * Returns css for different types of buttons.
  * Comes in the kinds "normal", "danger" and "happy".
  */
-const css = (kind: Kind, extraCss: Interpolation<Theme> = {}): Interpolation<Theme> => {
-  const config = useAppkitConfig();
-
+const css = (
+  config: AppkitConfig,
+  kind: Kind,
+  extraCss: Interpolation<Theme> = {}
+): Interpolation<Theme> => {
   const notDisabledStyle = match(kind, {
     "normal": () => ({
       border: `1px solid ${config.colors.neutral40}`,
