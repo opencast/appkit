@@ -24,7 +24,7 @@ export const ProtoButton = React.forwardRef<HTMLButtonElement, JSX.IntrinsicElem
 );
 
 /** The kind of buttons a "Button" can be. Used for styling */
-export type Kind = "normal" | "danger" | "happy";
+export type Kind = "normal" | "danger" | "call-to-action";
 
 type ButtonProps = JSX.IntrinsicElements["button"] & {
     kind?: Kind;
@@ -61,18 +61,18 @@ const css = (kind: Kind, extraCss: Interpolation<Theme> = {}): Interpolation<The
       "&:hover, &:focus-visible": {
         border: `1px solid ${config.colors.danger5}`,
         backgroundColor: config.colors.danger4,
-        color: config.colors.danger0,  // danger0BwInverted
+        color: config.colors.danger0BwInverted,  // danger0BwInverted
       },
     }),
 
-    "happy": () => ({
-      border: `1px solid ${config.colors.happy4}`,
-      color: config.colors.happy1, // happy0BwInverted
-      backgroundColor: config.colors.happy3,
+    "call-to-action": () => ({
+      border: `1px solid ${config.colors.happy5}`,
+      color: config.colors.happy4BwInverted, // happy0BwInverted
+      backgroundColor: config.colors.happy4,
       "&:hover, &:focus-visible": {
-        border: `1px solid ${config.colors.happy5}`,
-        backgroundColor: config.colors.happy4,
-        color: config.colors.happy0,  // happy1BwInverted
+        border: `1px solid ${config.colors.happy6}`,
+        backgroundColor: config.colors.happy5,
+        color: config.colors.happy5BwInverted,  // happy1BwInverted
       },
     }),
   });

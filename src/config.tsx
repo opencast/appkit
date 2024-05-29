@@ -28,22 +28,30 @@ export type ColorConfig = {
   neutral90: string,
 
   danger0: string,
+  danger0BwInverted: string,
   danger1: string,
+  danger1BwInverted: string,
   danger2: string,
   danger4: string,
   danger5: string,
 
-  happy0: string;
-  happy1: string;
-  happy3: string;
   happy4: string;
+  happy4BwInverted: string;
   happy5: string;
+  happy5BwInverted: string;
+  happy6: string;
+  happy6BwInverted: string;
+  happy7: string;
+  happy8: string;
 
   accent8: string;
   accent7: string;
   accent6: string;
+  accent6BwInverted: string;
   accent5: string;
+  accent5BwInverted: string;
   accent4: string;
+  accent4BwInverted: string;
 
   focus: string;
 };
@@ -65,22 +73,30 @@ export const DEFAULT_CONFIG: AppkitConfig = {
     neutral90: "var(--color-neutral90)",
 
     danger0: "var(--color-danger0)",
+    danger0BwInverted: "var(--color-danger0-bw-inverted)",
     danger1: "var(--color-danger1)",
+    danger1BwInverted: "var(--color-danger1-bw-inverted)",
     danger2: "var(--color-danger2)",
     danger4: "var(--color-danger4)",
     danger5: "var(--color-danger5)",
 
-    happy0: "var(--color-happy0)",
-    happy1: "var(--color-happy1)",
-    happy3: "var(--color-happy3)",
-    happy4: "var(--color-happy4)",
-    happy5: "var(--color-happy5)",
+    happy4: "var(--color-accent4)",
+    happy4BwInverted: "var(--color-accent4-bw-inverted)",
+    happy5: "var(--color-accent5)",
+    happy5BwInverted: "var(--color-accent5-bw-inverted)",
+    happy6: "var(--color-accent6)",
+    happy6BwInverted: "var(--color-accent6-bw-inverted)",
+    happy7: "var(--color-accent7)",
+    happy8: "var(--color-accent8)",
 
     accent8: "var(--color-accent8)",
     accent7: "var(--color-accent7)",
     accent6: "var(--color-accent6)",
+    accent6BwInverted: "var(--color-accent6-bw-inverted)",
     accent5: "var(--color-accent5)",
+    accent5BwInverted: "var(--color-accent5-bw-inverted)",
     accent4: "var(--color-accent4)",
+    accent4BwInverted: "var(--color-accent4-bw-inverted)",
 
     focus: "var(--color-accent8)",
   },
