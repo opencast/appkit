@@ -32,8 +32,11 @@ export type ColorConfig = {
   danger1: string,
   danger1BwInverted: string,
   danger2: string,
+  danger2BwInverted: string,
   danger4: string,
+  danger4BwInverted: string,
   danger5: string,
+  danger5BwInverted: string,
 
   happy4: string;
   happy4BwInverted: string;
@@ -42,10 +45,14 @@ export type ColorConfig = {
   happy6: string;
   happy6BwInverted: string;
   happy7: string;
+  happy7BwInverted: string;
   happy8: string;
+  happy8BwInverted: string;
 
   accent8: string;
+  accent8BwInverted: string;
   accent7: string;
+  accent7BwInverted: string;
   accent6: string;
   accent6BwInverted: string;
   accent5: string;
@@ -77,8 +84,11 @@ export const DEFAULT_CONFIG: AppkitConfig = {
     danger1: "var(--color-danger1)",
     danger1BwInverted: "var(--color-danger1-bw-inverted)",
     danger2: "var(--color-danger2)",
+    danger2BwInverted: "var(--color-danger1-bw-inverted)",
     danger4: "var(--color-danger4)",
+    danger4BwInverted: "var(--color-danger1-bw-inverted)",
     danger5: "var(--color-danger5)",
+    danger5BwInverted: "var(--color-danger1-bw-inverted)",
 
     happy4: "var(--color-accent4)",
     happy4BwInverted: "var(--color-accent4-bw-inverted)",
@@ -87,10 +97,14 @@ export const DEFAULT_CONFIG: AppkitConfig = {
     happy6: "var(--color-accent6)",
     happy6BwInverted: "var(--color-accent6-bw-inverted)",
     happy7: "var(--color-accent7)",
+    happy7BwInverted: "var(--color-accent6-bw-inverted)",
     happy8: "var(--color-accent8)",
+    happy8BwInverted: "var(--color-accent6-bw-inverted)",
 
     accent8: "var(--color-accent8)",
+    accent8BwInverted: "var(--color-accent6-bw-inverted)",
     accent7: "var(--color-accent7)",
+    accent7BwInverted: "var(--color-accent6-bw-inverted)",
     accent6: "var(--color-accent6)",
     accent6BwInverted: "var(--color-accent6-bw-inverted)",
     accent5: "var(--color-accent5)",

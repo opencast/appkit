@@ -14,16 +14,22 @@ html[data-color-scheme="light"], html:not([data-color-scheme]) {
   --color-neutral90: #181818;
 
   --color-danger0: #feedeb;
-  --color-danger0-bw-inverted: #fff;
+  --color-danger0-bw-inverted: #000;
   --color-danger1: #ffd2cd;
-  --color-danger1-bw-inverted: #fff;
+  --color-danger1-bw-inverted: #000;
   --color-danger2: #feaba1;
+  --color-danger2-bw-inverted: #000;
   --color-danger4: #c22a2c;
+  --color-danger4-bw-inverted: #fff;
   --color-danger5: #880e11;
+  --color-danger5-bw-inverted: #fff;
 
   --color-accent9: #044a81;
+  --color-accent9-bw-inverted: #fff;
   --color-accent8: #215D99;
+  --color-accent8-bw-inverted: #fff;
   --color-accent7: #3073B8;
+  --color-accent7-bw-inverted: #fff;
   --color-accent6: #3E8AD8;
   --color-accent6-bw-inverted: #000;
   --color-accent5: #4DA1F7;
@@ -55,12 +61,18 @@ html[data-color-scheme="dark"] {
   --color-danger1: #462522;
   --color-danger1-bw-inverted: #fff;
   --color-danger2: #712f2a;
+  --color-danger2-bw-inverted: #fff;
   --color-danger4: #e0584d;
+  --color-danger4-bw-inverted: #fff;
   --color-danger5: #fb7c67;
+  --color-danger5-bw-inverted: #000;
 
   --color-accent9: #85ace3;
+  --color-accent9-bw-inverted: #000;
   --color-accent8: #7da4db;
+  --color-accent8-bw-inverted: #000;
   --color-accent7: #588ccd;
+  --color-accent7-bw-inverted: #000;
   --color-accent6: #1f72ba;
   --color-accent6-bw-inverted: #fff;
   --color-accent5: #1c619e;
@@ -88,15 +100,20 @@ html[data-color-scheme="light-high-contrast"] {
   --color-neutral90: #000;
 
   --color-danger0: #fff;
-  --color-danger0-bw-inverted: #fff;
+  --color-danger0-bw-inverted: #000;
   --color-danger1: #fff;
-  --color-danger1-bw-inverted: #fff;
+  --color-danger1-bw-inverted: #000;
   --color-danger2: #a50613;
+  --color-danger2-bw-inverted: #fff;
   --color-danger4: #a50613;
+  --color-danger4-bw-inverted: #fff;
   --color-danger5: #a50613;
+  --color-danger5-bw-inverted: #fff;
 
   --color-accent8: #000099;
+  --color-accent8-bw-inverted: #fff;
   --color-accent7: #000099;
+  --color-accent7-bw-inverted: #fff;
   --color-accent6: #000099;
   --color-accent6-bw-inverted: #fff;
   --color-accent5: #000099;
@@ -124,15 +141,20 @@ html[data-color-scheme="dark-high-contrast"] {
   --color-neutral90: #fff;
 
   --color-danger0: #000;
-  --color-danger0-bw-iInverted: #fff;
+  --color-danger0-bw-inverted: #fff;
   --color-danger1: #000;
   --color-danger1-bw-inverted: #fff;
   --color-danger2: #eb1722;
+  --color-danger2-bw-inverted: #fff;
   --color-danger4: #eb1722;
+  --color-danger4-bw-inverted: #fff;
   --color-danger5: #eb1722;
+  --color-danger5-bw-inverted: #fff;
 
   --color-accent8: #a6ffea;
+  --color-accent8-bw-inverted: #000;
   --color-accent7: #a6ffea;
+  --color-accent7-bw-inverted: #000;
   --color-accent6: #a6ffea;
   --color-accent6-bw-inverted: #000;
   --color-accent5: #a6ffea;

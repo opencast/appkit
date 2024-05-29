@@ -44,7 +44,6 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 
 /**
  * Returns css for different types of buttons.
- * Comes in the kinds "normal", "danger" and "happy".
  */
 const css = (
   config: AppkitConfig,
@@ -67,18 +66,18 @@ const css = (
       "&:hover, &:focus-visible": {
         border: `1px solid ${config.colors.danger5}`,
         backgroundColor: config.colors.danger4,
-        color: config.colors.danger0BwInverted,  // danger0BwInverted
+        color: config.colors.danger4BwInverted,
       },
     }),
 
     "call-to-action": () => ({
-      border: `1px solid ${config.colors.happy5}`,
-      color: config.colors.happy4BwInverted, // happy0BwInverted
-      backgroundColor: config.colors.happy4,
+      border: `1px solid ${config.colors.happy7}`,
+      color: config.colors.happy6BwInverted,
+      backgroundColor: config.colors.happy6,
       "&:hover, &:focus-visible": {
-        border: `1px solid ${config.colors.happy6}`,
-        backgroundColor: config.colors.happy5,
-        color: config.colors.happy5BwInverted,  // happy1BwInverted
+        border: `1px solid ${config.colors.happy8}`,
+        backgroundColor: config.colors.happy7,
+        color: config.colors.happy7BwInverted,
       },
     }),
   });
