@@ -110,6 +110,8 @@ html[data-color-scheme="light-high-contrast"] {
   --color-danger5: #a50613;
   --color-danger5-bw-inverted: #fff;
 
+  --color-accent9: #000099;
+  --color-accent9-bw-inverted: #fff;
   --color-accent8: #000099;
   --color-accent8-bw-inverted: #fff;
   --color-accent7: #000099;
@@ -151,6 +153,8 @@ html[data-color-scheme="dark-high-contrast"] {
   --color-danger5: #eb1722;
   --color-danger5-bw-inverted: #fff;
 
+  --color-accent9: #a6ffea;
+  --color-accent9-bw-inverted: #000;
   --color-accent8: #a6ffea;
   --color-accent8-bw-inverted: #000;
   --color-accent7: #a6ffea;

@@ -48,7 +48,11 @@ export type ColorConfig = {
   happy7BwInverted: string;
   happy8: string;
   happy8BwInverted: string;
+  happy9: string;
+  happy9BwInverted: string;
 
+  accent9: string;
+  accent9BwInverted: string;
   accent8: string;
   accent8BwInverted: string;
   accent7: string;
@@ -100,7 +104,11 @@ export const DEFAULT_CONFIG: AppkitConfig = {
     happy7BwInverted: "var(--color-accent7-bw-inverted)",
     happy8: "var(--color-accent8)",
     happy8BwInverted: "var(--color-accent8-bw-inverted)",
+    happy9: "var(--color-accent9)",
+    happy9BwInverted: "var(--color-accent9-bw-inverted)",
 
+    accent9: "var(--color-accent9)",
+    accent9BwInverted: "var(--color-accent9-bw-inverted)",
     accent8: "var(--color-accent8)",
     accent8BwInverted: "var(--color-accent8-bw-inverted)",
     accent7: "var(--color-accent7)",

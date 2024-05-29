@@ -71,13 +71,13 @@ const css = (
     }),
 
     "call-to-action": () => ({
-      border: `1px solid ${config.colors.happy7}`,
-      color: config.colors.happy6BwInverted,
-      backgroundColor: config.colors.happy6,
+      border: `1px solid ${config.colors.happy8}`,
+      color: config.colors.happy7BwInverted,
+      backgroundColor: config.colors.happy7,
       "&:hover, &:focus-visible": {
-        border: `1px solid ${config.colors.happy8}`,
-        backgroundColor: config.colors.happy7,
-        color: config.colors.happy7BwInverted,
+        border: `1px solid ${config.colors.happy9}`,
+        backgroundColor: config.colors.happy8,
+        color: config.colors.happy8BwInverted,
       },
     }),
   });
