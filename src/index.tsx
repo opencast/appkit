@@ -1,13 +1,17 @@
 import { AppkitConfig } from "./config";
 
 export * from "./button";
+export * from "./card";
 export * from "./colorScheme";
 export * from "./config";
+export * from "./confirmationModal";
 export * from "./err";
+export * from "./errorBox";
 export * from "./floating";
 export * from "./header";
 export * from "./spinner";
 export * from "./util";
+export * from "./modal";
 
 
 /**

@@ -28,16 +28,41 @@ export type ColorConfig = {
   neutral90: string,
 
   danger0: string,
+  danger0BwInverted: string,
   danger1: string,
+  danger1BwInverted: string,
   danger2: string,
+  danger2BwInverted: string,
   danger4: string,
+  danger4BwInverted: string,
   danger5: string,
+  danger5BwInverted: string,
 
+  happy4: string;
+  happy4BwInverted: string;
+  happy5: string;
+  happy5BwInverted: string;
+  happy6: string;
+  happy6BwInverted: string;
+  happy7: string;
+  happy7BwInverted: string;
+  happy8: string;
+  happy8BwInverted: string;
+  happy9: string;
+  happy9BwInverted: string;
+
+  accent9: string;
+  accent9BwInverted: string;
   accent8: string;
+  accent8BwInverted: string;
   accent7: string;
+  accent7BwInverted: string;
   accent6: string;
+  accent6BwInverted: string;
   accent5: string;
+  accent5BwInverted: string;
   accent4: string;
+  accent4BwInverted: string;
 
   focus: string;
 };
@@ -59,16 +84,41 @@ export const DEFAULT_CONFIG: AppkitConfig = {
     neutral90: "var(--color-neutral90)",
 
     danger0: "var(--color-danger0)",
+    danger0BwInverted: "var(--color-danger0-bw-inverted)",
     danger1: "var(--color-danger1)",
+    danger1BwInverted: "var(--color-danger1-bw-inverted)",
     danger2: "var(--color-danger2)",
+    danger2BwInverted: "var(--color-danger2-bw-inverted)",
     danger4: "var(--color-danger4)",
+    danger4BwInverted: "var(--color-danger4-bw-inverted)",
     danger5: "var(--color-danger5)",
+    danger5BwInverted: "var(--color-danger5-bw-inverted)",
 
+    happy4: "var(--color-accent4)",
+    happy4BwInverted: "var(--color-accent4-bw-inverted)",
+    happy5: "var(--color-accent5)",
+    happy5BwInverted: "var(--color-accent5-bw-inverted)",
+    happy6: "var(--color-accent6)",
+    happy6BwInverted: "var(--color-accent6-bw-inverted)",
+    happy7: "var(--color-accent7)",
+    happy7BwInverted: "var(--color-accent7-bw-inverted)",
+    happy8: "var(--color-accent8)",
+    happy8BwInverted: "var(--color-accent8-bw-inverted)",
+    happy9: "var(--color-accent9)",
+    happy9BwInverted: "var(--color-accent9-bw-inverted)",
+
+    accent9: "var(--color-accent9)",
+    accent9BwInverted: "var(--color-accent9-bw-inverted)",
     accent8: "var(--color-accent8)",
+    accent8BwInverted: "var(--color-accent8-bw-inverted)",
     accent7: "var(--color-accent7)",
+    accent7BwInverted: "var(--color-accent7-bw-inverted)",
     accent6: "var(--color-accent6)",
+    accent6BwInverted: "var(--color-accent6-bw-inverted)",
     accent5: "var(--color-accent5)",
+    accent5BwInverted: "var(--color-accent5-bw-inverted)",
     accent4: "var(--color-accent4)",
+    accent4BwInverted: "var(--color-accent4-bw-inverted)",
 
     focus: "var(--color-accent8)",
   },
