@@ -1,6 +1,6 @@
 import React from "react";
 import { Interpolation, Theme } from "@emotion/react";
-import { AppkitConfig, focusStyle, match, useAppkitConfig } from ".";
+import { AppkitConfig, focusStyle, match, useAppkitConfig, useColorScheme } from ".";
 
 /**
  * A mostly unstyled button used to build buttons. Always use this instead of
@@ -35,9 +35,10 @@ type ButtonProps = JSX.IntrinsicElements["button"] & {
 export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   ({ kind = "normal", extraCss, children, ...rest }, ref) => {
     const config = useAppkitConfig();
+    const { isHighContrast } = useColorScheme();
 
     return (
-      <button ref={ref} type="button" css={css(config, kind, extraCss)} {...rest}>{children}</button>
+      <button ref={ref} type="button" css={css(config, kind, isHighContrast, extraCss)} {...rest}>{children}</button>
     );
   },
 );
@@ -48,6 +49,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 const css = (
   config: AppkitConfig,
   kind: Kind,
+  isHighContrast: boolean,
   extraCss: Interpolation<Theme> = {}
 ): Interpolation<Theme> => {
   const notDisabledStyle = match(kind, {
@@ -63,6 +65,7 @@ const css = (
     "danger": () => ({
       border: `1px solid ${config.colors.danger4}`,
       color: config.colors.danger4,
+      fontWeight: isHighContrast ? "bold" : "inherit",
       "&:hover, &:focus-visible": {
         border: `1px solid ${config.colors.danger5}`,
         backgroundColor: config.colors.danger4,
