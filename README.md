@@ -108,6 +108,12 @@ danger4   #e0584d   lch(56.1%  64.1  33.4)
 danger5   #fb7c67   lch(67.1%  59.8  36.1)
 ```
 
+### Happy color
+
+By default, this is the same as the accent color.
+"Happy" just means that it can be used for "call to action" and positive contexts.
+All colors except red can be used in these contexts, so this color should only be changed (i.e. be different from accent) if the accent color is some kind of red.
+
 ## Color Scheme Switching
 
 Appkit provides utlities to have multiple color schemes in your app: `useColorScheme` and `ColorSchemeProvider`.
