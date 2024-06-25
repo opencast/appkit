@@ -16,6 +16,17 @@ that's the whole point: to get a pre-defined design.
 - Provide color values, most likely by copying [`colors.css`](./src/colors.css) into your `index.html`. See "colors" section below.
 - Optionally configure appkit via `AppkitConfigProvider`.
 
+## Icons: [Lucide](https://lucide.dev/)
+
+While this library does not ship any icons itself, apps in the Opencast context should use the same icons to ensure consistency.
+Therefore, **use [Lucide icons](https://lucide.dev/)!**
+There are only two exceptions: use `search` and `translate` from [Hero icons v1 (outline version)](https://v1.heroicons.com/) instead of the alternatives from Lucide.
+Hint: it's convenient to use [`react-icons`](https://react-icons.github.io/react-icons/) to import all needed icons into your codebase.
+
+Should your app require an icon that's not available in Lucide, you can create a new one (or check Hero).
+This should follow [Lucide's Design Principles](https://lucide.dev/guide/design/icon-design-guide).
+Unless the icon is very particular (i.e. unlikely to be useful in any other application), it should be [contributed back to Lucide](https://github.com/lucide-icons/lucide/blob/main/CONTRIBUTING.md).
+
 
 ## Colors
 
