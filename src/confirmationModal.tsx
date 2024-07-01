@@ -11,7 +11,7 @@ import { ModalProps, ModalHandle, Modal, Spinner, Button, boxError } from ".";
 import { currentRef } from "./util";
 
 
-type ConfirmationModalProps = Omit<ModalProps, "closable" | "title"> & {
+export type ConfirmationModalProps = Omit<ModalProps, "closable" | "title"> & {
   title?: string;
   /** What to display in the confirm button. A string can be enough. */
   buttonContent: ReactNode;
