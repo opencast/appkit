@@ -62,6 +62,66 @@ export function match<T extends string | number, Arms extends T, Out>(
   const _v: string = match(1 as number, { 1: () => "a", 2: () => "b" });
 })();
 
+/**
+* Similar to `match` for when you need to narrow a type depending on a tag.
+*
+* In the following example, you can see that we can access `age` and `name`,
+* as if we used `if`, for example. Unlike `match`, this fails to compile if
+* the given match arms do not cover all possibilities.
+*
+* ```
+* type Foo = { kind: "foo", age: number }
+*   | { kind: "bar", name: string };
+*
+* const obj = { kind: "foo", age: 13 } as Foo;
+* const out = matchTag(obj, "kind", {
+*     foo: o => o.age,
+*     bar: o => o.name.length,
+* });
+* ```
+*/
+export function matchTag<
+  T extends string | number,
+  Tag extends string,
+  Obj extends Record<Tag, T>,
+  Out,
+>(
+  obj: Obj,
+  tag: Tag,
+  arms: { [Key in T]: (value: Extract<Obj, Record<Tag, Key>>) => Out },
+): Out {
+  // Unfortunately, I haven't figured out how to make TypeScript understand that
+  // this is safe.
+  // eslint-disable-next-line
+  return arms[obj[tag]](obj as any);
+}
+
+// Some tests for `matchTag`
+(() => {
+  type Foo = { kind: "foo", age: number }
+    | { kind: "bar", name: string };
+
+  const obj = { kind: "foo", age: 13 } as Foo;
+  const _n: number = matchTag(obj, "kind", {
+    foo: o => o.age,
+    bar: o => o.name.length,
+  });
+
+
+  // Should cause compile errors
+  // @ts-expect-error: missing arms
+  // eslint-disable-next-line
+  matchTag(obj, "kind", { foo: o => o.age });
+  // @ts-expect-error: wrong tag
+  // eslint-disable-next-line
+  matchTag(obj, "blub", { foo: o => o.age, bar: o => o.name.length });
+
+  type Stringy = { kind: string, name: string };
+  const s = { kind: "foo", name: "Peter" } as Stringy;
+  // @ts-expect-error: incomplete arms for string tag
+  matchTag(s, "kind", { foo: () => true });
+})();
+
 
 /** CSS Media query for screens with widths ≤ `w` */
 export const screenWidthAtMost = (w: number) => `@media (max-width: ${w}px)`;
