@@ -133,7 +133,7 @@ export const HeaderMenu: React.FC<HeaderMenuProps> = ({ close, items, label, bre
               if (!keepOpenAfterClick) {
                 close();
               }
-            }} />
+            }} />,
           )}
         </ul>
       </div>

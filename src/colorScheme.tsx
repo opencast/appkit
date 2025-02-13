@@ -94,13 +94,6 @@ export const ColorSchemeProvider: React.FC<ColorSchemeProviderProps> = ({
   allowedSchemes = COLOR_SCHEMES,
   children,
 }) => {
-  if (allowedSchemes.length < 2) {
-    return bug("`allowedSchemes` for ColorSchemeProvider need to have at least 2 schemes");
-  }
-  if (!allowedSchemes.includes("light") && !allowedSchemes.includes("dark")) {
-    return bug("`allowedSchemes` must contain either 'light' or 'dark'");
-  }
-
   const isValidScheme = (v: string | undefined | null): v is ColorScheme => {
     return !!v && (allowedSchemes as readonly string[]).includes(v);
   };
@@ -114,6 +107,13 @@ export const ColorSchemeProvider: React.FC<ColorSchemeProviderProps> = ({
   // Next, check whether there are some preferences stored in local storage.
   const stored = window.localStorage.getItem(LOCAL_STORAGE_KEY);
   const [isAuto, setIsAuto] = useState(!isValidScheme(stored));
+
+  if (allowedSchemes.length < 2) {
+    return bug("`allowedSchemes` for ColorSchemeProvider need to have at least 2 schemes");
+  }
+  if (!allowedSchemes.includes("light") && !allowedSchemes.includes("dark")) {
+    return bug("`allowedSchemes` must contain either 'light' or 'dark'");
+  }
 
   const context: ColorSchemeContext = {
     scheme,

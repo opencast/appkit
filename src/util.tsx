@@ -41,7 +41,6 @@ export function match<T extends string | number, Out>(
     // understand that in the case of `fallback === undefined`, `arms` is
     // not a partial map. But it is, as you can see from the two callable
     // signatures above.
-    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     ? arms[value]!()
     : (arms[value] as (() => Out) | undefined ?? fallback)();
 }
