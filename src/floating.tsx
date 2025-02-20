@@ -11,6 +11,7 @@ import {
   useClick,
   useDismiss,
   useFloating,
+  UseFloatingReturn,
   useFocus,
   useHover,
   useInteractions,
@@ -45,7 +46,7 @@ type Context = {
             y?: number;
         };
     };
-    refs: Pick<ReturnType<typeof useFloating>["refs"], "setReference" | "setFloating"> & {
+    refs: Pick<UseFloatingReturn["refs"], "setReference" | "setFloating"> & {
         arrowRef: React.MutableRefObject<HTMLDivElement | null>;
         listRef: React.MutableRefObject<Array<HTMLElement | null>>;
     };
@@ -274,6 +275,7 @@ export const FloatingTrigger: React.FC<FloatingTriggerProps> = ({ children }) =>
 
   return React.cloneElement(children, {
     "data-floating-state": context.open ? "open" : "closed",
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
     ...context.getReferenceProps({
       ref: context.refs.setReference,
       onClick: () => context.open && context.setOpen?.(false),
@@ -461,7 +463,7 @@ export const WithTooltip = React.forwardRef<FloatingHandle, WithTooltipProps>(
         <FloatingTrigger>{children}</FloatingTrigger>
       </FloatingContainer>
     );
-  }
+  },
 );
 
 

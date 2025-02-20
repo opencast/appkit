@@ -50,7 +50,7 @@ const css = (
   config: AppkitConfig,
   kind: Kind,
   isHighContrast: boolean,
-  extraCss: Interpolation<Theme> = {}
+  extraCss: Interpolation<Theme> = {},
 ): Interpolation<Theme> => {
   const notDisabledStyle = match(kind, {
     "normal": () => ({
