@@ -36,7 +36,7 @@ export function match<T extends string | number, Arms extends T, Out>(
 }
 
 // Some tests for `match`
-(() => {
+const _dummy0 = () => {
   type Animal = "cat" | "dog" | "fox";
   type SmallNumber = 1 | 2 | 3;
 
@@ -60,7 +60,7 @@ export function match<T extends string | number, Arms extends T, Out>(
   const _w: string = match(1 as SmallNumber, { 1: () => "a", 2: () => "b" });
   // @ts-expect-error: is nullable
   const _v: string = match(1 as number, { 1: () => "a", 2: () => "b" });
-})();
+};
 
 /**
 * Similar to `match` for when you need to narrow a type depending on a tag.
@@ -97,7 +97,7 @@ export function matchTag<
 }
 
 // Some tests for `matchTag`
-(() => {
+const _dummy1 = () => {
   type Foo = { kind: "foo", age: number }
     | { kind: "bar", name: string };
 
@@ -120,7 +120,7 @@ export function matchTag<
   const s = { kind: "foo", name: "Peter" } as Stringy;
   // @ts-expect-error: incomplete arms for string tag
   matchTag(s, "kind", { foo: () => true });
-})();
+};
 
 
 /** CSS Media query for screens with widths ≤ `w` */
