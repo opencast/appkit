@@ -1,6 +1,6 @@
 {
   "name": "@opencast/appkit",
-  "version": "0.3.1",
+  "version": "0.4.0",
   "description": "Code shared by React+TS web applications across the Opencast ecosystem",
   "repository": "github:opencast/appkit",
   "author": "The Opencast project",
