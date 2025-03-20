@@ -1,4 +1,4 @@
-import { LuAlertTriangle, LuInfo } from "react-icons/lu";
+import { LuTriangleAlert, LuInfo } from "react-icons/lu";
 import { match, useAppkitConfig } from ".";
 
 
@@ -38,7 +38,7 @@ export const Card: React.FC<Props> = ({ kind, iconPos = "left", children, ...res
       {...rest}
     >
       {match(kind, {
-        "error": () => <LuAlertTriangle />,
+        "error": () => <LuTriangleAlert />,
         "info": () => <LuInfo css={{ color: config.colors.neutral60 }} />,
       })}
       <div>{children}</div>
