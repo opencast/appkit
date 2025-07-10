@@ -153,6 +153,6 @@ export const useOnOutsideClick = (
  * This is mainly for accessing refs in event handlers for elements
  * that are guaranteed to be alive as long as the ref itself.
  */
-export const currentRef = <T, >(ref: React.RefObject<T>): T => (
+export const currentRef = <T, >(ref: React.RefObject<T | null>): T => (
   ref.current ?? bug("ref unexpectedly unbound")
 );

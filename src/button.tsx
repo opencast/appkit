@@ -1,4 +1,4 @@
-import React from "react";
+import React, { JSX } from "react";
 import { Interpolation, Theme } from "@emotion/react";
 import { AppkitConfig, focusStyle, match, useAppkitConfig, useColorScheme } from ".";
 
