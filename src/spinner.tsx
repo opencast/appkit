@@ -1,5 +1,5 @@
 import { keyframes } from "@emotion/react";
-import React from "react";
+import React, { JSX } from "react";
 
 type Props = JSX.IntrinsicElements["svg"] & {
   size?: number | string;

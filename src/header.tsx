@@ -1,10 +1,11 @@
-import { ReactElement, ReactNode, forwardRef, useRef } from "react";
+import { JSX, ReactNode, forwardRef, useRef } from "react";
 import { CSSObject, jsx } from "@emotion/react";
 import { FiArrowLeft, FiCheck } from "react-icons/fi";
 
 import {
   useAppkitConfig, Floating, FloatingContainer, FloatingContainerProps, FloatingHandle,
   FloatingTrigger, ProtoButton, focusStyle, useColorScheme, match, useFloatingItemProps,
+  FloatingTriggerProps,
 } from ".";
 
 
@@ -14,7 +15,7 @@ export type WithHeaderMenuProps = {
   menu: Omit<HeaderMenuProps, "close">,
   /** Overrides for the floating container */
   floatingContainer?: Partial<FloatingContainerProps>,
-  children: ReactElement;
+  children: FloatingTriggerProps["children"]
 };
 
 /**
@@ -205,7 +206,13 @@ export const HeaderMenuItem = forwardRef<HTMLElement, HeaderMenuItemProps>(
         }}
         {...!wrapper && {
           className,
-          ref: r => typeof ref === "function" ? ref(r) : (ref ? ref.current = r : {}),
+          ref: r => {
+            if (typeof ref === "function") {
+              ref(r);
+            } else if (ref && "current" in ref) {
+              ref.current = r;
+            }
+          },
         }}
       >
         {jsx(wrapperElem.type, {

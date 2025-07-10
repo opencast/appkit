@@ -1,4 +1,4 @@
-import { MutableRefObject, useEffect } from "react";
+import { RefObject, useEffect } from "react";
 import { bug } from "./err";
 
 /**
@@ -131,7 +131,7 @@ export const screenWidthAbove = (w: number) => `@media not all and (max-width: $
 
 /** Helper to react to clicks outside of the DOM element referred to by `ref`. */
 export const useOnOutsideClick = (
-  ref: MutableRefObject<Node | null>,
+  ref: RefObject<Node | null>,
   callback: () => void,
 ): void => {
   useEffect(() => {
@@ -153,6 +153,6 @@ export const useOnOutsideClick = (
  * This is mainly for accessing refs in event handlers for elements
  * that are guaranteed to be alive as long as the ref itself.
  */
-export const currentRef = <T, >(ref: React.RefObject<T>): T => (
+export const currentRef = <T, >(ref: React.RefObject<T | null>): T => (
   ref.current ?? bug("ref unexpectedly unbound")
 );

@@ -18,7 +18,7 @@ import {
   useListNavigation,
   useRole,
 } from "@floating-ui/react";
-import React, { ReactNode, ReactElement, useRef, useState, useImperativeHandle } from "react";
+import React, { ReactNode, ReactElement, useRef, useState, useImperativeHandle, HTMLAttributes } from "react";
 import { mergeRefs } from "react-merge-refs";
 
 import { bug, unreachable } from "./err";
@@ -47,8 +47,8 @@ type Context = {
         };
     };
     refs: Pick<UseFloatingReturn["refs"], "setReference" | "setFloating"> & {
-        arrowRef: React.MutableRefObject<HTMLDivElement | null>;
-        listRef: React.MutableRefObject<Array<HTMLElement | null>>;
+        arrowRef: React.RefObject<HTMLDivElement | null>;
+        listRef: React.RefObject<Array<HTMLElement | null>>;
     };
     getReferenceProps: ReturnType<typeof useInteractions>["getReferenceProps"];
     getFloatingProps: ReturnType<typeof useInteractions>["getFloatingProps"];
@@ -259,7 +259,7 @@ export const FloatingContainer = React.forwardRef<FloatingHandle, FloatingContai
 // ===== <FloatingTrigger> ======================================================================
 
 export type FloatingTriggerProps = {
-    children: ReactElement;
+    children: ReactElement<HTMLAttributes<HTMLElement>>
 };
 
 /**
@@ -273,9 +273,9 @@ export type FloatingTriggerProps = {
 export const FloatingTrigger: React.FC<FloatingTriggerProps> = ({ children }) => {
   const context = useFloatingContext();
 
-  return React.cloneElement(children, {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  return React.cloneElement<any>(children, {
     "data-floating-state": context.open ? "open" : "closed",
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-argument
     ...context.getReferenceProps({
       ref: context.refs.setReference,
       onClick: () => context.open && context.setOpen?.(false),
@@ -437,7 +437,7 @@ export const Floating = React.forwardRef<HTMLDivElement, FloatingProps>(
 // ===== Convenience Components ==================================================================
 
 export type WithTooltipProps = {
-    children: ReactElement;
+    children: FloatingTriggerProps["children"]
     tooltip: ReactNode;
     tooltipCss?: CSSObject;
 } & Partial<Omit<FloatingContainerProps, "trigger">>;
