@@ -19,6 +19,12 @@ export type ColorSchemeContext = {
   /** True if a high contrast scheme is currently active. */
   isHighContrast: boolean;
 
+  /** True for dark color schemes (normal or high contrast) */
+  isDark: boolean;
+
+  /** True for light color schemes (normal or high contrast) */
+  isLight: boolean;
+
   /** Updates the current color scheme. */
   update: (pref: ColorScheme | "auto") => void;
 };
@@ -169,6 +175,8 @@ export const ColorSchemeProvider: React.FC<ColorSchemeProviderProps> = ({
     scheme,
     isAuto,
     isHighContrast: scheme.includes("high-contrast"),
+    isDark: scheme.includes("dark"),
+    isLight: scheme.includes("light"),
     update: pref => {
       if (pref !== "auto" && !isValidScheme(pref)) {
         return bug("Passed forbidden color scheme to `update`");
