@@ -1,4 +1,4 @@
-import { ReactElement, ReactNode, forwardRef, useRef } from "react";
+import { JSX, ReactElement, ReactNode, forwardRef, useRef } from "react";
 import { CSSObject, jsx } from "@emotion/react";
 import { FiArrowLeft, FiCheck } from "react-icons/fi";
 
@@ -205,7 +205,13 @@ export const HeaderMenuItem = forwardRef<HTMLElement, HeaderMenuItemProps>(
         }}
         {...!wrapper && {
           className,
-          ref: r => typeof ref === "function" ? ref(r) : (ref ? ref.current = r : {}),
+          ref: r => {
+            if (typeof ref === "function") {
+              ref(r);
+            } else if (ref && "current" in ref) {
+              ref.current = r;
+            }
+          },
         }}
       >
         {jsx(wrapperElem.type, {

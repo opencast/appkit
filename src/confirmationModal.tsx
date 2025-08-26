@@ -6,6 +6,7 @@ import {
   useState,
   useRef,
   useImperativeHandle,
+  JSX,
 } from "react";
 import { ModalProps, ModalHandle, Modal, Spinner, Button, boxError } from ".";
 import { currentRef } from "./util";

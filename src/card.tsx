@@ -1,5 +1,6 @@
 import { LuTriangleAlert, LuInfo } from "react-icons/lu";
 import { match, useAppkitConfig } from ".";
+import { JSX } from "react";
 
 
 type Props = JSX.IntrinsicElements["div"] & {

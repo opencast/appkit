@@ -259,7 +259,8 @@ export const FloatingContainer = React.forwardRef<FloatingHandle, FloatingContai
 // ===== <FloatingTrigger> ======================================================================
 
 export type FloatingTriggerProps = {
-    children: ReactElement;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    children: ReactElement<any>;
 };
 
 /**
@@ -283,6 +284,7 @@ export const FloatingTrigger: React.FC<FloatingTriggerProps> = ({ children }) =>
     }),
   });
 };
+
 
 
 // ===== <Floating> ==============================================================================
