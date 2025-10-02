@@ -7,7 +7,7 @@ import {
 } from "react";
 import ReactDOM from "react-dom";
 import { LuX } from "react-icons/lu";
-import FocusTrap from "focus-trap-react";
+import { FocusTrap } from "focus-trap-react";
 import {
   useAppkitConfig, ProtoButton, focusStyle, useColorScheme,
 } from ".";
